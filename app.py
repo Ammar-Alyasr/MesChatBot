@@ -78,7 +78,7 @@ def send_message(recipient_id, message_text):
 
 
 def log(message):  # simple wrapper for logging to stdout on heroku
-    print message
+    print message.decode('unicode-escape')
     sys.stdout.flush()
 
 
