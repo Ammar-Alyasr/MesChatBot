@@ -79,7 +79,7 @@ def send_message(recipient_id, message_text):
 
 def log(msg):  # simple wrapper for logging to stdout on heroku
     try:
-        msg = str(msg, 'utf-8')
+        msg = str(msg)
         print (msg)
     except UnicodeEncodeError:
         pass  # squash logging errors in case of non-ascii text
