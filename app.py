@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+#-*- coding: cp1254 -*-
 import os
 import sys
 import json
@@ -77,12 +79,8 @@ def send_message(recipient_id, message_text):
         log(r.text)
 
 
-def log(msg, *args, **kwargs):  # simple wrapper for logging to stdout on heroku
-    try:
-        msg = unicode(msg).format(*args, **kwargs)
-        print u"{}".format( msg)
-    except UnicodeEncodeError:
-        pass  # squash logging errors in case of non-ascii text
+def log(msg):  # simple wrapper for logging to stdout on heroku
+    print (msg)
     sys.stdout.flush()
 
 
