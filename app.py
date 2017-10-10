@@ -1,7 +1,7 @@
 import os
 import sys
 import json
-
+print(sys.version)
 import requests
 from flask import Flask, request
 
@@ -77,8 +77,12 @@ def send_message(recipient_id, message_text):
         log(r.text)
 
 
-def log(message):  # simple wrapper for logging to stdout on heroku
-    print(message)
+def log(msg, *args, **kwargs):  # simple wrapper for logging to stdout on heroku
+    try:
+        msg = unicode(msg).format(*args, **kwargs)
+        print u"{}: {}".format(datetime.now(), msg)
+    except UnicodeEncodeError:
+        pass  # squash logging errors in case of non-ascii text
     sys.stdout.flush()
 
 
