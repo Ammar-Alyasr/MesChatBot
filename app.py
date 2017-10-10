@@ -1,7 +1,7 @@
 import os
 import sys
 import json
-print(sys.version)
+
 import requests
 from flask import Flask, request
 
