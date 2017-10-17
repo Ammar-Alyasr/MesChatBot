@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+#-*- coding: cp1254 -*-
 import os
 import sys
 import json
@@ -78,6 +80,7 @@ def send_message(recipient_id, message_text):
 
 
 def log(msg):  # simple wrapper for logging to stdout on heroku
+
     print msg
     sys.stdout.flush()
 
