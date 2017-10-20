@@ -52,9 +52,9 @@ def webhook():
                                 send_message(sender_id,"1; Kesinlikle katilmiyorum, 5: kesinlikle katiliyorum olacak şekilde sana uygun şekilde yanıtla. ")
 
                                 send_message(sender_id,"Proje temelli öğretim uygulamaları öğrenmeyi etkinleştirir")
-                        else:
-                            send_message(sender_id, "sen bilirsin :(")
-                            send_message(sender_id, "ben gidiyorum, gorusuruz")
+                            else:
+                                send_message(sender_id, "sen bilirsin :(")
+                                send_message(sender_id, "ben gidiyorum, gorusuruz")
 
                     else:
                         send_message(sender_id, message_text)
