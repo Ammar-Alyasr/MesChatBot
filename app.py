@@ -40,24 +40,23 @@ def webhook():
                     recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
                     message_text = messaging_event["message"]["text"]  # the message's text
 
-                    if message_text == "merhaba":
+                    if (message_text == "marhaba"):
                         send_message(sender_id, "merhaba dostum :)")
                         send_message(sender_id, "kisa bir anket doldurmak ister misin ? ")
                         send_message(sender_id, "bir iki dakkika surer.. merak etme, tamam yaz baslayalim :)")
-                        if someMsg == 1:
-                            if message_text == "tamam":
+                        if messaging_event.get("message"):
+                            if (message_text == "tamam"):
                                 send_message(sender_id, "harika..")
-                                send_message(sender_id, "Internet temelli dersler cok faydalıdır")
-                                send_message(sender_id,"1; Kesinlikle katilmiyorum, 5: kesinlikle katiliyorum olacak şekilde sana uygun şekilde yanıtla. ")
-
-                                send_message(sender_id,"Proje temelli öğretim uygulamaları öğrenmeyi etkinleştirir")
+                                send_message(sender_id, "Internet temelli dersler çok faydalıdır")
+                                send_message(sender_id,"1; Kesinlikle katılmıyorum, 5: kesinlikle katılıyorum olacak şekilde sana uygun şekilde yanıtla. ")
+                                if messaging_event.get("message"):
+                                    send_message(sender_id,"Proje temelli öğretim uygulamaları öğrenmeyi etkinleştirir")
                             else:
                                 send_message(sender_id, "sen bilirsin :(")
                                 send_message(sender_id, "ben gidiyorum, gorusuruz")
 
                     else:
                         send_message(sender_id, message_text)
-                    someMsg = 0
                 if messaging_event.get("delivery"):  # delivery confirmation
                     pass
 
