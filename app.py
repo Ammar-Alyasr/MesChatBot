@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+#-*-coding:utf-8-*-
 import os
 import sys
 import json
@@ -46,8 +48,8 @@ def webhook():
                         if someMsg == 1:
                             if message_text == "tamam":
                                 send_message(sender_id, "harika..")
-                                send_message(sender_id, "Internet temelli dersler çok faydalıdır")
-                                send_message(sender_id,"1; Kesinlikle katılmıyorum, 5: kesinlikle katılıyorum olacak şekilde sana uygun şekilde yanıtla. ")
+                                send_message(sender_id, "Internet temelli dersler cok faydalıdır")
+                                send_message(sender_id,"1; Kesinlikle katilmiyorum, 5: kesinlikle katiliyorum olacak şekilde sana uygun şekilde yanıtla. ")
 
                                 send_message(sender_id,"Proje temelli öğretim uygulamaları öğrenmeyi etkinleştirir")
                         else:
