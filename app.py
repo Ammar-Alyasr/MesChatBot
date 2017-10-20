@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-#-*- coding: cp1254 -*-
 import os
 import sys
 import json
@@ -41,8 +39,23 @@ def webhook():
                     recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
                     message_text = messaging_event["message"]["text"]  # the message's text
 
-                    send_message(sender_id, message_text)
+                    if(message_text == "merhaba"):
+                        send_message(sender_id, "merhaba dostum :)")
+                        send_message(sender_id, "kisa bir anket doldurmak ister misin ? ")
+                        send_message(sender_id, "bir iki dakkika surer.. merak etme, tamam yaz baslayalim :)")
+                        if messaging_event.get("message"):
+                            if(message_text == "tamam"):
+                                send_message(sender_id, "harika..")
+                                send_message(sender_id, "Internet temelli dersler çok faydalıdır")
+                                send_message(sender_id, "1; Kesinlikle katılmıyorum, 5: kesinlikle katılıyorum olacak şekilde sana uygun şekilde yanıtla. ")
+                                if messaging_event.get("message"):
+                                    send_message(sender_id, "Proje temelli öğretim uygulamaları öğrenmeyi etkinleştirir")
+                            else:
+                                send_message(sender_id, "sen bilirsin :(")
+                                send_message(sender_id, "ben gidiyorum, gorusuruz")
 
+                    else:
+                        send_message(sender_id, message_text)
                 if messaging_event.get("delivery"):  # delivery confirmation
                     pass
 
@@ -79,9 +92,12 @@ def send_message(recipient_id, message_text):
         log(r.text)
 
 
-def log(msg):  # simple wrapper for logging to stdout on heroku
-
-    print msg
+def log(msg, *args, **kwargs):  # simple wrapper for logging to stdout on heroku
+    try:
+        msg = unicode(msg).format(*args, **kwargs)
+        print u"{}".format( msg)
+    except UnicodeEncodeError:
+        pass  # squash logging errors in case of non-ascii text
     sys.stdout.flush()
 
 
