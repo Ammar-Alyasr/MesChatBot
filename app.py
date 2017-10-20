@@ -41,7 +41,7 @@ def webhook():
                     message_text = messaging_event["message"]["text"]  # the message's text
 
                     if message_text == "merhaba":
-                        send_message(sender_id, "merhaba dostum :) şekilde")
+                        send_message(sender_id, "merhaba dostum :)")
                         send_message(sender_id, "kisa bir anket doldurmak ister misin ? ")
                         send_message(sender_id, "bir iki dakkika surer.. merak etme, tamam yaz baslayalim :)")
                         send_message(sender_id, someMsg)
