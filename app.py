@@ -42,7 +42,7 @@ def webhook():
                     else:
                         message_text = messaging_event["message"]["text"]  # the message's text
 
-                    if message_text == "hello":
+                    if message_text == "hi":
                         send_message(sender_id, "merhaba dostum :)")
                         send_message(sender_id, "kisa bir anket doldurmak ister misin ? ")
                         send_message(sender_id, "bir iki dakkika surer.. merak etme, tamam yaz baslayalim :)")
@@ -87,7 +87,7 @@ def send_message(recipient_id, message_text):
 
 
 def log(msg):  # simple wrapper for logging to stdout on heroku
-    print msg
+    print (msg)
     sys.stdout.flush()
 
 
