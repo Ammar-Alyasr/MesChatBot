@@ -29,7 +29,6 @@ def webhook():
 
     data = request.get_json()
     log(data)  # you may not want to log every incoming message in production, but it's good for testing
-    someMsg = 1
     if data["object"] == "page":
 
         for entry in data["entry"]:
@@ -38,29 +37,19 @@ def webhook():
                 if messaging_event.get("message"):  # someone sent us a message
                     sender_id = messaging_event["sender"]["id"]        # the facebook ID of the person sending you the message
                     recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
-                    message_text = messaging_event["message"]["text"]  # the message's text
+                    if(messaging_event["message"]["text"] == "ş"):
+                        message_text = "merhaba"
+                    else:
+                        message_text = messaging_event["message"]["text"]  # the message's text
 
                     if message_text == "hello":
                         send_message(sender_id, "merhaba dostum :)")
                         send_message(sender_id, "kisa bir anket doldurmak ister misin ? ")
                         send_message(sender_id, "bir iki dakkika surer.. merak etme, tamam yaz baslayalim :)")
-                        send_message(sender_id, someMsg)
-                        if someMsg == 1:
-                            if message_text == "tamam":
-                                send_message(sender_id, "harika..")
-                                send_message(sender_id, "Internet temelli dersler cok faydalıdır")
-                                send_message(sender_id,"1; Kesinlikle katilmiyorum, 5: kesinlikle katiliyorum olacak şekilde sana uygun şekilde yanıtla. ")
-
-                                send_message(sender_id,"Proje temelli öğretim uygulamaları öğrenmeyi etkinleştirir")
-                            else:
-                                send_message(sender_id, "sen bilirsin :(")
-                                send_message(sender_id, "ben gidiyorum, gorusuruz")
-
                     else:
                         send_message(sender_id, message_text)
-                        send_message(sender_id, someMsg)
-                    someMsg = 0
-                    send_message(sender_id, someMsg)
+
+
                 if messaging_event.get("delivery"):  # delivery confirmation
                     pass
 
