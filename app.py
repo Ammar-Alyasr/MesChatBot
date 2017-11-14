@@ -1,8 +1,7 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
 import os
 import sys
 import json
+from datetime import datetime
 
 import requests
 from flask import Flask, request
@@ -29,26 +28,19 @@ def webhook():
 
     data = request.get_json()
     log(data)  # you may not want to log every incoming message in production, but it's good for testing
+
     if data["object"] == "page":
 
         for entry in data["entry"]:
             for messaging_event in entry["messaging"]:
 
                 if messaging_event.get("message"):  # someone sent us a message
+
                     sender_id = messaging_event["sender"]["id"]        # the facebook ID of the person sending you the message
                     recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
-                    if(messaging_event["message"]["text"] == "ş"):
-                        message_text = "merhaba"
-                    else:
-                        message_text = messaging_event["message"]["text"]  # the message's text
+                    message_text = messaging_event["message"]["text"]  # the message's text
 
-                    if message_text == "hi":
-                        send_message(sender_id, "merhaba dostum :)")
-                        send_message(sender_id, "kisa bir anket doldurmak ister misin ? ")
-                        send_message(sender_id, "bir iki dakkika surer.. merak etme, tamam yaz baslayalim :)")
-                    else:
-                        send_message(sender_id, message_text)
-
+                    send_message(sender_id, "roger that!")
 
                 if messaging_event.get("delivery"):  # delivery confirmation
                     pass
@@ -86,8 +78,15 @@ def send_message(recipient_id, message_text):
         log(r.text)
 
 
-def log(msg):  # simple wrapper for logging to stdout on heroku
-    print(msg)
+def log(msg, *args, **kwargs):  # simple wrapper for logging to stdout on heroku
+    try:
+        if type(msg) is dict:
+            msg = json.dumps(msg)
+        else:
+            msg = unicode(msg).format(*args, **kwargs)
+        print u"{}: {}".format(datetime.now(), msg)
+    except UnicodeEncodeError:
+        pass  # squash logging errors in case of non-ascii text
     sys.stdout.flush()
 
 
