@@ -10,7 +10,7 @@ def whatisthis(s):
     else:
         print "not a string"
 
-b = u"015fekilde"
+
 
 s = u"015fekilde"
 if isinstance(s, str):
@@ -21,8 +21,3 @@ elif isinstance(s, unicode):
 
 
 
-print (b'\xff\xfeW['.decode('utf-16'))
-
-nonlat = "herhangi bir öğe alınısın"
-nonlat.encode()
-print (nonlat)

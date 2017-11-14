@@ -48,7 +48,11 @@ def webhook():
                         send_message(sender_id, "bir iki daka alir sadece")
                         send_message(sender_id, "beni kirma ne olur")
                     else:
-                        send_message(sender_id, message_text)
+                        if type(message_text) is str:
+                            send_message(sender_id, message_text)
+                        else:
+                            message_text = unicode(message_text)
+                            send_message(sender_id, message_text)
                 if messaging_event.get("delivery"):  # delivery confirmation
                     pass
 
