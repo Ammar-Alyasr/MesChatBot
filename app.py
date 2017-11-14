@@ -42,6 +42,11 @@ def webhook():
                     if(message_text == "merhaba" or message_text == "Merhaba"):
                         send_message(sender_id, "Merhaba kanka nbr ? ")
                         send_message(sender_id, ":)")
+                    elif(message_text == "iyidir" or message_text == "iyidir senden" or message_text == "iyilik"):
+                        send_message(sender_id, "susukurler olsun kanka")
+                        send_message(sender_id, "Kisa bir anket doldurmak ister misin?")
+                        send_message(sender_id, "bir iki daka alir sadece")
+                        send_message(sender_id, "beni kirma ne olur")
                     else:
                         send_message(sender_id, message_text)
                 if messaging_event.get("delivery"):  # delivery confirmation
