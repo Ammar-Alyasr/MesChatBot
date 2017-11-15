@@ -38,21 +38,19 @@ def webhook():
                     sender_id = messaging_event["sender"]["id"]        # the facebook ID of the person sending you the message
                     recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
                     message_text = messaging_event["message"]["text"]  # the message's text
-
-                    if(message_text == "merhaba" or message_text == "Merhaba"):
+                    if type(message_text) is not str:
+                        message_text = unicode(message_text)
+                    if message_text == "merhaba" or message_text == "Merhaba" :
                         send_message(sender_id, "Merhaba kanka nbr ? ")
                         send_message(sender_id, ":)")
-                    elif(message_text == "iyidir" or message_text == "iyidir senden" or message_text == "iyilik"):
+                    elif message_text == "iyidir" or message_text == "iyidir senden" or message_text == "iyilik":
                         send_message(sender_id, "susukurler olsun kanka")
                         send_message(sender_id, "Kisa bir anket doldurmak ister misin?")
                         send_message(sender_id, "bir iki daka alir sadece")
                         send_message(sender_id, "beni kirma ne olur")
                     else:
-                        if type(message_text) is str:
-                            send_message(sender_id, message_text)
-                        else:
-                            message_text = unicode(message_text)
-                            send_message(sender_id, message_text)
+                        send_message(sender_id, "neyse")
+                        send_image(sender_id, "https://i.ytimg.com/vi/CH2m2ml2iVo/hqdefault.jpg")
                 if messaging_event.get("delivery"):  # delivery confirmation
                     pass
 
@@ -87,6 +85,35 @@ def send_message(recipient_id, message_text):
     if r.status_code != 200:
         log(r.status_code)
         log(r.text)
+
+def send_image(recipient_id, imag):
+    params = {
+        "access_token": os.environ["PAGE_ACCESS_TOKEN"]
+    }
+    headers = {
+        "Content-Type": "application/json"
+    }
+    data = json.dumps({
+          "recipient":{
+            "id":recipient_id
+          },
+          "message":{
+            "attachment":{
+              "type":"image", 
+              "payload":{
+                "url":imag, 
+                "is_reusable":true
+              }
+            }
+          }
+
+          })
+    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
+    if r.status_code != 200:
+        log(r.status_code)
+        log(r.text)
+
+
 
 
 def log(msg, *args, **kwargs):  # simple wrapper for logging to stdout on heroku
