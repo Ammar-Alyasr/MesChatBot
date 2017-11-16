@@ -50,7 +50,6 @@ def webhook():
                         send_message(sender_id, "beni kirma ne olur")
                     else:
                         send_message(sender_id, "neyse")
-                        send_image(sender_id, "https://i.ytimg.com/vi/CH2m2ml2iVo/hqdefault.jpg")
                 if messaging_event.get("delivery"):  # delivery confirmation
                     pass
 
