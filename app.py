@@ -30,15 +30,14 @@ def webhook():
     log(data)  # you may not want to log every incoming message in production, but it's good for testing
 
     if data["object"] == "page":
-
-        for entry in data["entry"]:
-            for messaging_event in entry["messaging"]:
-
-                if messaging_event.get("message"):  # someone sent us a message
+    for entry in data["entry"]:
+        for messaging_event in entry["messaging"]:
+            if messaging_event.get("message"):  # someone sent us a message
+                if messaging_event.get("text"):
                     sender_id = messaging_event["sender"]["id"]        # the facebook ID of the person sending you the message
                     recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
                     message_text = messaging_event["message"]["text"]  # the message's text
-                
+
                     if message_text == "merhaba" or message_text == "Merhaba" :
                         send_message(sender_id, "Merhaba kanka nbr ? ")
                         send_message(sender_id, ":)")
@@ -49,8 +48,10 @@ def webhook():
                         send_message(sender_id, "beni kirma ne olur")
                     else:
                         send_message(sender_id, "neyse")
-                if(messaging_event.get("image")):
+
+                else:
                     send_image(sender_id, "https://www.namearabic.com/thumbs/Dewani/Ameena-290-400.jpg")
+                    
                 if messaging_event.get("delivery"):  # delivery confirmation
                     pass
 
