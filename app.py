@@ -23,35 +23,33 @@ def verify():
 
 @app.route('/', methods=['POST'])
 def webhook():
-
     # endpoint for processing incoming messaging events
 
     data = request.get_json()
     log(data)  # you may not want to log every incoming message in production, but it's good for testing
-
     if data["object"] == "page":
-    for entry in data["entry"]:
-        for messaging_event in entry["messaging"]:
-            if messaging_event.get("message"):  # someone sent us a message
-                if messaging_event.get("text"):
-                    sender_id = messaging_event["sender"]["id"]        # the facebook ID of the person sending you the message
-                    recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
-                    message_text = messaging_event["message"]["text"]  # the message's text
+        for entry in data["entry"]:
+            for messaging_event in entry["messaging"]:
+                sender_id = messaging_event["sender"]["id"]        # the facebook ID of the person sending you the message
+                if messaging_event.get("message"):  # someone sent us a message
+                    if messaging_event.get("text"):
+                        recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
+                        message_text = messaging_event["message"]["text"]  # the message's text
 
-                    if message_text == "merhaba" or message_text == "Merhaba" :
-                        send_message(sender_id, "Merhaba kanka nbr ? ")
-                        send_message(sender_id, ":)")
-                    elif message_text == "iyidir" or message_text == "iyidir senden" or message_text == "iyilik":
-                        send_message(sender_id, "susukurler olsun kanka")
-                        send_message(sender_id, "Kisa bir anket doldurmak ister misin?")
-                        send_message(sender_id, "bir iki daka alir sadece")
-                        send_message(sender_id, "beni kirma ne olur")
+                        if message_text == "merhaba" or message_text == "Merhaba" :
+                            send_message(sender_id, "Merhaba kanka nbr ? ")
+                            send_message(sender_id, ":)")
+                        elif message_text == "iyidir" or message_text == "iyidir senden" or message_text == "iyilik":
+                            send_message(sender_id, "susukurler olsun kanka")
+                            send_message(sender_id, "Kisa bir anket doldurmak ister misin?")
+                            send_message(sender_id, "bir iki daka alir sadece")
+                            send_message(sender_id, "beni kirma ne olur")
+                        else:
+                            send_message(sender_id, "neyse")
+
                     else:
-                        send_message(sender_id, "neyse")
+                        send_image(sender_id, "https://www.namearabic.com/thumbs/Dewani/Ameena-290-400.jpg")
 
-                else:
-                    send_image(sender_id, "https://www.namearabic.com/thumbs/Dewani/Ameena-290-400.jpg")
-                    
                 if messaging_event.get("delivery"):  # delivery confirmation
                     pass
 
@@ -100,9 +98,9 @@ def send_image(recipient_id, imag):
           },
           "message":{
             "attachment":{
-              "type":"image", 
+              "type":"image",
               "payload":{
-                "url":imag, 
+                "url":imag,
               }
             }
           }
