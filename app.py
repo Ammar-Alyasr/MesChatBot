@@ -38,8 +38,7 @@ def webhook():
                     sender_id = messaging_event["sender"]["id"]        # the facebook ID of the person sending you the message
                     recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
                     message_text = messaging_event["message"]["text"]  # the message's text
-                    if type(message_text) is not str:
-                        message_text = unicode(message_text)
+                
                     if message_text == "merhaba" or message_text == "Merhaba" :
                         send_message(sender_id, "Merhaba kanka nbr ? ")
                         send_message(sender_id, ":)")
@@ -50,6 +49,8 @@ def webhook():
                         send_message(sender_id, "beni kirma ne olur")
                     else:
                         send_message(sender_id, "neyse")
+                if(messaging_event.get("image")):
+                    send_image(sender_id, "https://www.namearabic.com/thumbs/Dewani/Ameena-290-400.jpg")
                 if messaging_event.get("delivery"):  # delivery confirmation
                     pass
 
@@ -101,7 +102,6 @@ def send_image(recipient_id, imag):
               "type":"image", 
               "payload":{
                 "url":imag, 
-                "is_reusable":true
               }
             }
           }
@@ -115,15 +115,8 @@ def send_image(recipient_id, imag):
 
 
 
-def log(msg, *args, **kwargs):  # simple wrapper for logging to stdout on heroku
-    try:
-        if type(msg) is dict:
-            msg = json.dumps(msg)
-        else:
-            msg = unicode(msg).format(*args, **kwargs)
-        print u"{}: {}".format(datetime.now(), msg)
-    except UnicodeEncodeError:
-        pass  # squash logging errors in case of non-ascii text
+def log(message):  # simple wrapper for logging to stdout on heroku
+    print(message)
     sys.stdout.flush()
 
 
