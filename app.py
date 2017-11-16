@@ -30,34 +30,30 @@ def webhook():
     if data["object"] == "page":
         for entry in data["entry"]:
             for messaging_event in entry["messaging"]:
+                mesage_type = messaging_event["message"]
+                
                 sender_id = messaging_event["sender"]["id"]        # the facebook ID of the person sending you the message
-                if messaging_event.get("message"):  # someone sent us a message
-                    if messaging_event.get("text"):
-                        recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
-                        message_text = messaging_event["message"]["text"]  # the message's text
+                recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
+                
+                try:
+                    if messaging_event.get("message"):  # someone sent us a message
+                        for control in mesage_type: 
+                            if "attachments" in control: # eger o mesaj icinde attachments varsa...
+                                send_image(sender_id, "https://www.namearabic.com/thumbs/Dewani/Ameena-290-400.jpg")
+                            elif "text" in control:      #yoksa text mi
+                                message_text = messaging_event["message"]["text"]  # the message's text
+                                send_message(sender_id, message_text)
+                        
+                    if messaging_event.get("delivery"):  # delivery confirmation
+                        pass
 
-                        if message_text == "merhaba" or message_text == "Merhaba" :
-                            send_message(sender_id, "Merhaba kanka nbr ? ")
-                            send_message(sender_id, ":)")
-                        elif message_text == "iyidir" or message_text == "iyidir senden" or message_text == "iyilik":
-                            send_message(sender_id, "susukurler olsun kanka")
-                            send_message(sender_id, "Kisa bir anket doldurmak ister misin?")
-                            send_message(sender_id, "bir iki daka alir sadece")
-                            send_message(sender_id, "beni kirma ne olur")
-                        else:
-                            send_message(sender_id, "neyse")
+                    if messaging_event.get("optin"):  # optin confirmation
+                        pass
 
-                    else:
-                        send_image(sender_id, "https://www.namearabic.com/thumbs/Dewani/Ameena-290-400.jpg")
-
-                if messaging_event.get("delivery"):  # delivery confirmation
-                    pass
-
-                if messaging_event.get("optin"):  # optin confirmation
-                    pass
-
-                if messaging_event.get("postback"):  # user clicked/tapped "postback" button in earlier message
-                    pass
+                    if messaging_event.get("postback"):  # user clicked/tapped "postback" button in earlier message
+                        pass
+                except Exception:
+                    send_message(sender_id, "sen ne attin ya!!!!")
 
     return "ok", 200
 
