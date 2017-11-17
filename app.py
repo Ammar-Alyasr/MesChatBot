@@ -116,44 +116,36 @@ def send_general_template(recipient_id):
         "Content-Type": "application/json"
     }
     data = json.dumps({
-          "recipient":{
-            "id":recipient_id
+          "recipient": {
+            "id": recipient_id
           },
-          "message":{
-            "attachment":{
-              "type":"template",
-              "payload":{
-                "template_type":"generic",
-                "elements":[
-                   {
-                    "title":"Welcome to Peter\'s Hats",
-                    "image_url":"https://petersfancybrownhats.com/company_image.png",
-                    "subtitle":"We\'ve got the right hat for everyone.",
-                    "default_action": {
-                      "type": "web_url",
-                      "url": "https://peterssendreceiveapp.ngrok.io/view?item=103",
-                      "messenger_extensions": true,
-                      "webview_height_ratio": "tall",
-                      "fallback_url": "https://peterssendreceiveapp.ngrok.io/"
-                    },
-                    "buttons": [
-                        {
-                            "type": "postback",
-                            "title": "Bunu mu istediniz?",
-                            "payload": "bunu"
-                        },
-                        {
-                            "type": "postback",
-                            "title": "Buna da ne dersiniz?",
-                            "payload": "dersinix"
-                        }
-                    ]
-                  }
-                ]
-              }
+          "message": {
+            "attachment": {
+              "type": "template",
+              "payload": {
+                "template_type": "button",
+                "text": "What do you want to do next?",
+                "buttons": [
+                {
+                "type": "postback",
+                "title": "Bunu mu istediniz?",
+                "payload": "bunu"
+                },
+                {
+                "type": "postback",
+                "title": "Buna da ne dersiniz?",
+                "payload": "dersinix"
             }
-          }
-        })
+        ]
+      }
+    }
+  }
+})
+
+
+
+
+
     r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
     if r.status_code != 200:
         log(r.status_code)
