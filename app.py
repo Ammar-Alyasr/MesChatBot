@@ -39,10 +39,10 @@ def webhook():
                     if messaging_event.get("message"):  # someone sent us a message
                         for control in mesage_type: 
                             if "attachments" in control: # eger o mesaj icinde attachments varsa...
-                                send_image(sender_id, "https://www.namearabic.com/thumbs/Dewani/Ameena-290-400.jpg")
+                                send_image(sender_id, "http://thecatapi.com/api/images/get?format=src&type=gif")
                             elif "text" in control:      #yoksa text mi
                                 message_text = messaging_event["message"]["text"]  # the message's text
-                                send_message(sender_id, message_text)
+                                send_message(sender_id, "ne istedin??")
                                 send_general_template(sender_id)
                         
                     if messaging_event.get("delivery"):  # delivery confirmation
@@ -136,16 +136,17 @@ def send_general_template(recipient_id):
                       "webview_height_ratio": "tall",
                       "fallback_url": "https://peterssendreceiveapp.ngrok.io/"
                     },
-                    "buttons":[
-                      {
-                        "type":"web_url",
-                        "url":"https://petersfancybrownhats.com",
-                        "title":"View Website"
-                      },{
-                        "type":"postback",
-                        "title":"Start Chatting",
-                        "payload":"DEVELOPER_DEFINED_PAYLOAD"
-                      }
+                    "buttons": [
+                        {
+                            "type": "postback",
+                            "title": "Bunu mu istediniz?",
+                            "payload": "bunu"
+                        },
+                        {
+                            "type": "postback",
+                            "title": "Buna da ne dersiniz?",
+                            "payload": "dersinix"
+                        }
                     ]
                   }
                 ]
