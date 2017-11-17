@@ -42,7 +42,7 @@ def webhook():
                                 send_image(sender_id, "http://thecatapi.com/api/images/get?format=src&type=gif")
                             elif "text" in control:      #yoksa text mi
                                 message_text = messaging_event["message"]["text"]  # the message's text
-                                send_message(sender_id, "ne istedin??")
+                                send_message(sender_id, "sen " + message_text + "misin")
                                 send_general_template(sender_id)
                     else:
                         send_message("1668676606538319", message_text)
@@ -135,7 +135,7 @@ def send_general_template(recipient_id):
               "type": "template",
               "payload": {
                 "template_type": "button",
-                "text": "What do you want to do next?",
+                "text": "islemi seciniz ",
                 "buttons": [
                 {
                 "type": "postback",
