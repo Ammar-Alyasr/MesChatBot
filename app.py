@@ -43,6 +43,7 @@ def webhook():
                             elif "text" in control:      #yoksa text mi
                                 message_text = messaging_event["message"]["text"]  # the message's text
                                 send_message(sender_id, message_text)
+                                send_general_template(sender_id)
                         
                     if messaging_event.get("delivery"):  # delivery confirmation
                         pass
@@ -107,7 +108,55 @@ def send_image(recipient_id, imag):
         log(r.status_code)
         log(r.text)
 
-
+def send_general_template(recipient_id):
+    params = {
+        "access_token": os.environ["PAGE_ACCESS_TOKEN"]
+    }
+    headers = {
+        "Content-Type": "application/json"
+    }
+    data = json.dumps({
+          "recipient":{
+            "id":recipient_id
+          },
+          "message":{
+            "attachment":{
+              "type":"template",
+              "payload":{
+                "template_type":"generic",
+                "elements":[
+                   {
+                    "title":"Welcome to Peter\'s Hats",
+                    "image_url":"https://petersfancybrownhats.com/company_image.png",
+                    "subtitle":"We\'ve got the right hat for everyone.",
+                    "default_action": {
+                      "type": "web_url",
+                      "url": "https://peterssendreceiveapp.ngrok.io/view?item=103",
+                      "messenger_extensions": true,
+                      "webview_height_ratio": "tall",
+                      "fallback_url": "https://peterssendreceiveapp.ngrok.io/"
+                    },
+                    "buttons":[
+                      {
+                        "type":"web_url",
+                        "url":"https://petersfancybrownhats.com",
+                        "title":"View Website"
+                      },{
+                        "type":"postback",
+                        "title":"Start Chatting",
+                        "payload":"DEVELOPER_DEFINED_PAYLOAD"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        })
+    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
+    if r.status_code != 200:
+        log(r.status_code)
+        log(r.text)
 
 
 def log(message):  # simple wrapper for logging to stdout on heroku
