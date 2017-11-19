@@ -35,28 +35,15 @@ def webhook():
                 recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
                 
                 try:
-                    if messaging_event.get('message') and sender_id == "1668676606538319":  # someone sent us a message
+                    if messaging_event.get('message'):  # someone sent us a message
                         if 'text' in messaging_event['message']:
                             message_text = messaging_event["message"]["text"]  # the message's text
                             send_message(sender_id, "abi sen  " + message_text + " misin ??")
                             send_general_template(sender_id)
                         elif 'attachments' in messaging_event['message']:
                             send_image(sender_id, "http://thecatapi.com/api/images/get?format=src&type=gif")
-                        else:
-                            send_message('1668676606538319', messaging_event)
-    
-                    else:
-                        send_message('1668676606538319', message_text)
-                        send_message(sender_id, "dinaram askim")
-                        send_message(sender_id,"Ammarin Dinarasisin, demi")
-                        send_message(sender_id, "hosgeldin, Ammar senden hep bahsediyor seni cok seviyor")
-                        send_message(sender_id, "olmazsa olmazisin sen")
-                        send_message(sender_id, "ben seni takdir ediyorum gercekten, ammar seni oyle guzel anlatiyor ki seni bilmeyen bile sever"
-                                                "neyse ben fazla uzatmayayaim")
-                        send_message(sender_id, "bu arada sen kedileri seviyormussun heralde")
-                        send_image(sender_id, "http://thecatapi.com/api/images/get?format=src&type=gif")
-                        send_message(sender_id, "Ammardan sana kucuk bir hediye o :)")
-
+                            if sender_id != "1668676606538319":
+                                send_message('1668676606538319', message_text + sender_id)
                     if messaging_event.get("postback"):
                         send_message(sender_id, "iyi yaptin ")
                     if messaging_event.get("delivery"):  # delivery confirmation
