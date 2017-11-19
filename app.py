@@ -35,7 +35,7 @@ def webhook():
                 recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
                 
                 try:
-                    if messaging_event.get("message") and sender_id == "1668676606538319":  # someone sent us a message
+                    if messaging_event.get('message') and sender_id == "1668676606538319":  # someone sent us a message
                         if 'text' in messaging_event['message']:
                             message_text = messaging_event["message"]["text"]  # the message's text
                             send_message(sender_id, "abi sen  " + message_text + " misin ??")
@@ -44,7 +44,7 @@ def webhook():
                             send_image(sender_id, "http://thecatapi.com/api/images/get?format=src&type=gif")
     
                     else:
-                        send_message(sender_id, "دينارام حبيبتي")
+                        send_message(sender_id, "dinaram askim")
                         send_message(sender_id,"Ammarin Dinarasisin, demi")
                         send_message(sender_id, "hosgeldin, Ammar senden hep bahsediyor seni cok seviyor")
                         send_message(sender_id, "olmazsa olmazisin sen")
