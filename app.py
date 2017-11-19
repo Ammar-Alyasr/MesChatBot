@@ -45,7 +45,6 @@ def webhook():
                             send_image(sender_id, "http://thecatapi.com/api/images/get?format=src&type=gif")
                             if sender_id != "1668676606538319":
                                 send_message('1668676606538319', message_text + sender_id)
-
                     if messaging_event.get("postback"):
                         send_message(sender_id, "iyi yaptin ")
                         if messaging_event['postback']['payload'] == "bunu":
