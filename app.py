@@ -40,10 +40,13 @@ def webhook():
                             message_text = messaging_event["message"]["text"]  # the message's text
                             send_message(sender_id, "abi sen  " + message_text + " misin ??")
                             send_general_template(sender_id)
-                        else:
+                        elif 'attachments' in messaging_event['message']:
                             send_image(sender_id, "http://thecatapi.com/api/images/get?format=src&type=gif")
+                        else:
+                            send_message('1668676606538319', messaging_event)
     
                     else:
+                        send_message('1668676606538319', message_text)
                         send_message(sender_id, "dinaram askim")
                         send_message(sender_id,"Ammarin Dinarasisin, demi")
                         send_message(sender_id, "hosgeldin, Ammar senden hep bahsediyor seni cok seviyor")
