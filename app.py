@@ -57,14 +57,15 @@ def webhook():
                         send_image(sender_id, "http://thecatapi.com/api/images/get?format=src&type=gif")
                         send_message(sender_id, "Ammardan sana kucuk bir hediye o :)")
 
+                    if messaging_event.get("postback"):
+                        send_message(sender_id, "iyi yaptin ")
                     if messaging_event.get("delivery"):  # delivery confirmation
                         pass
 
                     if messaging_event.get("optin"):  # optin confirmation
                         pass
 
-                    if messaging_event.get("postback"):  # user clicked/tapped "postback" button in earlier message
-                        pass
+                    
                 except Exception:
                     send_message(sender_id, "sen ne attin ya!!!!")
 
