@@ -157,7 +157,7 @@ def send_general_template(recipient_id):
         log(r.status_code)
         log(r.text)
 
-#adding picitures tamplates
+#adding picitures tamplates. it dosent work for now....
 def send_image_tamplate(recipient_id):
     params = {
         "access_token": os.environ["PAGE_ACCESS_TOKEN"]
@@ -182,20 +182,16 @@ def send_image_tamplate(recipient_id):
                             "default_action": {
                                 "type": "https://developers.facebook.com",
                                 "url": "https://i.kinja-img.com/gawker-media/image/upload/s--M7aOfgD_--/c_scale,fl_progressive,q_80,w_800/riufs7rtpk6okzrqiqmy.jpg",
-                                "messenger_extensions": 1,
+                                "messenger_extensions": True,
                                 "webview_height_ratio": "tall",
                                 "fallback_url": "https://i.kinja-img.com/gawker-media/image/upload/s--M7aOfgD_--/c_scale,fl_progressive,q_80,w_800/riufs7rtpk6okzrqiqmy.jpg"
                             },
                             "buttons": [
                                 {
-                                    "type": "https://i.kinja-img.com/gawker-media/image/upload/s--M7aOfgD_--/c_scale,fl_progressive,q_80,w_800/riufs7rtpk6okzrqiqmy.jpg",
-                                    "url": "https://i.kinja-img.com/gawker-media/image/upload/s--M7aOfgD_--/c_scale,fl_progressive,q_80,w_800/riufs7rtpk6okzrqiqmy.jpg",
-                                    "title": "View Website"
-                                }, {
                                     "type": "postback",
                                     "title": "Start Chatting",
                                     "payload": "DEVELOPER_DEFINED_PAYLOAD"
-                                }
+                                },
                             ]
                         }
                     ]
