@@ -180,7 +180,7 @@ def send_image_tamplate(recipient_id):
                             "image_url": "https://i.kinja-img.com/gawker-media/image/upload/s--M7aOfgD_--/c_scale,fl_progressive,q_80,w_800/riufs7rtpk6okzrqiqmy.jpg",
                             "subtitle": "We'\''ve got the right hat for everyone.",
                             "default_action": {
-                                "type": "https://developers.facebook.com",
+                                "type": "web_url",
                                 "url": "https://i.kinja-img.com/gawker-media/image/upload/s--M7aOfgD_--/c_scale,fl_progressive,q_80,w_800/riufs7rtpk6okzrqiqmy.jpg",
                                 "messenger_extensions": True,
                                 "webview_height_ratio": "tall",
