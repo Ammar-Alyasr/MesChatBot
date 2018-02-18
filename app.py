@@ -40,18 +40,18 @@ def webhook():
                         if 'text' in messaging_event['message']:
                             message_text = messaging_event["message"]["text"]  # the message's text
                             send_message(sender_id, "abi sen  " + message_text + " misin ??")
-                            send_general_template(sender_id)
+                            send_image_tamplate(sender_id)
                         elif 'attachments' in messaging_event['message']:
                             send_image(sender_id, "http://thecatapi.com/api/images/get?format=src&type=gif")
                             if sender_id != "1668676606538319":
                                 send_message('1668676606538319', message_text + sender_id)
                     if messaging_event.get("postback"):
-                        send_message(sender_id, "iyi yaptin ")
                         if messaging_event['postback']['payload'] == "bunu":
                             send_message(sender_id,"Bunu mu istediniz Simdi gel")
 
                         if messaging_event['postback']['payload'] == "dersinix":
                             send_message(sender_id,"Buna ne dersiniz Simdi gel")
+
                     if messaging_event.get("delivery"):  # delivery confirmation
                         pass
 
@@ -151,6 +151,58 @@ def send_general_template(recipient_id):
 
 
 
+
+    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
+    if r.status_code != 200:
+        log(r.status_code)
+        log(r.text)
+
+#adding picitures tamplates
+def send_image_tamplate(recipient_id):
+    params = {
+        "access_token": os.environ["PAGE_ACCESS_TOKEN"]
+    }
+    headers = {
+        "Content-Type": "application/json"
+    }
+    data = json.dumps({
+        "recipient": {
+            "id": recipient_id
+        },
+        "message": {
+            "attachment": {
+                "type": "template",
+                "payload": {
+                    "template_type": "generic",
+                    "elements": [
+                        {
+                            "title": "Welcome to Peter'\''s Hats",
+                            "image_url": "https://i.kinja-img.com/gawker-media/image/upload/s--M7aOfgD_--/c_scale,fl_progressive,q_80,w_800/riufs7rtpk6okzrqiqmy.jpg",
+                            "subtitle": "We'\''ve got the right hat for everyone.",
+                            "default_action": {
+                                "type": "https://developers.facebook.com",
+                                "url": "https://i.kinja-img.com/gawker-media/image/upload/s--M7aOfgD_--/c_scale,fl_progressive,q_80,w_800/riufs7rtpk6okzrqiqmy.jpg",
+                                "messenger_extensions": 1,
+                                "webview_height_ratio": "tall",
+                                "fallback_url": "https://i.kinja-img.com/gawker-media/image/upload/s--M7aOfgD_--/c_scale,fl_progressive,q_80,w_800/riufs7rtpk6okzrqiqmy.jpg"
+                            },
+                            "buttons": [
+                                {
+                                    "type": "https://i.kinja-img.com/gawker-media/image/upload/s--M7aOfgD_--/c_scale,fl_progressive,q_80,w_800/riufs7rtpk6okzrqiqmy.jpg",
+                                    "url": "https://i.kinja-img.com/gawker-media/image/upload/s--M7aOfgD_--/c_scale,fl_progressive,q_80,w_800/riufs7rtpk6okzrqiqmy.jpg",
+                                    "title": "View Website"
+                                }, {
+                                    "type": "postback",
+                                    "title": "Start Chatting",
+                                    "payload": "DEVELOPER_DEFINED_PAYLOAD"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        }
+    })
 
     r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
     if r.status_code != 200:
