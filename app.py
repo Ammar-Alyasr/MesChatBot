@@ -48,7 +48,10 @@ def webhook():
                     if messaging_event.get("postback"):
                         send_message(sender_id, "iyi yaptin ")
                         if messaging_event['postback']['payload'] == "bunu":
-                            send_message(sender_id,)
+                            send_message(sender_id,"Bunu mu istediniz Simdi gel")
+
+                        if messaging_event['postback']['payload'] == "dersinix":
+                            send_message(sender_id,"Buna ne dersiniz Simdi gel")
                     if messaging_event.get("delivery"):  # delivery confirmation
                         pass
 
