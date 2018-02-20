@@ -122,11 +122,9 @@ def send_general_template(recipient_id):
     }
     headers = {
         "Content-Type": "application/json",
-        "whitelisted_domains": [
-        "http://thecatapi.com",
-        "https://marcogreselin.com",
-        "https://github.com",
-        "https://instagram.com"]
+        "setting_type" : "domain_whitelisting",
+        "whitelisted_domains" : ["http://thecatapi.com"],
+        "domain_action_type": "add"
     }
     data = json.dumps({
           "recipient": {
@@ -171,11 +169,9 @@ def send_image_tamplate(recipient_id):
     }
     headers = {
         "Content-Type": "application/json",
-        "whitelisted_domains": [
-            "http://thecatapi.com",
-            "https://marcogreselin.com",
-            "https://github.com",
-            "https://instagram.com"]
+        "setting_type": "domain_whitelisting",
+        "whitelisted_domains": ["http://thecatapi.com"],
+        "domain_action_type": "add"
     }
     data = json.dumps({
         "recipient": {
