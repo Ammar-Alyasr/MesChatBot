@@ -121,7 +121,12 @@ def send_general_template(recipient_id):
         "access_token": os.environ["PAGE_ACCESS_TOKEN"]
     }
     headers = {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "whitelisted_domains": [
+        "http://thecatapi.com"
+        "https://marcogreselin.com"
+        "https://github.com"
+        "https://instagram.com"]
     }
     data = json.dumps({
           "recipient": {
@@ -165,7 +170,12 @@ def send_image_tamplate(recipient_id):
         "access_token": os.environ["PAGE_ACCESS_TOKEN"]
     }
     headers = {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "whitelisted_domains": [
+            "http://thecatapi.com"
+            "https://marcogreselin.com"
+            "https://github.com"
+            "https://instagram.com"]
     }
     data = json.dumps({
         "recipient": {
@@ -183,10 +193,10 @@ def send_image_tamplate(recipient_id):
                             "subtitle": "We'\''ve got the right hat for everyone.",
                             "default_action": {
                                 "type": "web_url",
-                                "url": "https://peterssendreceiveapp.ngrok.io/view?item=103",
+                                "url": "http://thecatapi.com/api/images/get?format=src&type=jpg",
                                 "messenger_extensions": True,
                                 "webview_height_ratio": "tall",
-                                "fallback_url": "https://peterssendreceiveapp.ngrok.io"
+                                "fallback_url": "http://thecatapi.com/api/images/get?format=src&type=jpg"
                             },
                             "buttons": [
                                 {
