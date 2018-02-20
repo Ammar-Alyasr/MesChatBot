@@ -39,12 +39,12 @@ def webhook():
                     if messaging_event.get('message'):  # someone sent us a message
                         if 'text' in messaging_event['message']:
                             message_text = messaging_event["message"]["text"]  # the message's text
-                            send_message(sender_id, "abi sen  " + message_text + " misin ??")
+                            send_message(sender_id,  message_text)
                             send_image_tamplate(sender_id)
                         elif 'attachments' in messaging_event['message']:
                             send_image(sender_id, "http://thecatapi.com/api/images/get?format=src&type=gif")
-                            if sender_id != "1668676606538319":
-                                send_message('1668676606538319', message_text + sender_id)
+                            if sender_id == "1668676606538319":
+                                send_message('1668676606538319', "Hello ammarik")
                     if messaging_event.get("postback"):
                         if messaging_event['postback']['payload'] == "bunu":
                             send_message(sender_id,"Bunu mu istediniz Simdi gel")
