@@ -123,9 +123,9 @@ def send_general_template(recipient_id):
     headers = {
         "Content-Type": "application/json",
         "whitelisted_domains": [
-        "http://thecatapi.com"
-        "https://marcogreselin.com"
-        "https://github.com"
+        "http://thecatapi.com",
+        "https://marcogreselin.com",
+        "https://github.com",
         "https://instagram.com"]
     }
     data = json.dumps({
@@ -172,9 +172,9 @@ def send_image_tamplate(recipient_id):
     headers = {
         "Content-Type": "application/json",
         "whitelisted_domains": [
-            "http://thecatapi.com"
-            "https://marcogreselin.com"
-            "https://github.com"
+            "http://thecatapi.com",
+            "https://marcogreselin.com",
+            "https://github.com",
             "https://instagram.com"]
     }
     data = json.dumps({
