@@ -30,16 +30,15 @@ def webhook():
     if data["object"] == "page":
         for entry in data["entry"]:
             for messaging_event in entry["messaging"]:
+                sender_id = messaging_event["sender"]["id"]  # the facebook ID of the person sending you the message
 
                 try:
-                    sender_id = messaging_event["sender"]["id"]  # the facebook ID of the person sending you the message
                     recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
 
                     if messaging_event.get('message'):  # someone sent us a message
                         if 'text' in messaging_event['message']:
                             message_text = messaging_event["message"]["text"]  # the message's text
                             send_message(sender_id,  message_text)
-                            send_image_tamplate(sender_id)
 
                         elif 'attachments' in messaging_event['message']:
                             send_image(sender_id, "http://thecatapi.com/api/images/get?format=src&type=gif")
@@ -122,9 +121,6 @@ def send_general_template(recipient_id):
     }
     headers = {
         "Content-Type": "application/json",
-        "setting_type" : "domain_whitelisting",
-        "whitelisted_domains" : ["http://thecatapi.com"],
-        "domain_action_type": "add"
     }
     data = json.dumps({
           "recipient": {
@@ -152,61 +148,6 @@ def send_general_template(recipient_id):
     }
   }
 })
-
-
-
-
-
-    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
-    if r.status_code != 200:
-        log(r.status_code)
-        log(r.text)
-
-#adding picitures tamplates. it dosent work for now....
-def send_image_tamplate(recipient_id):
-    params = {
-        "access_token": os.environ["PAGE_ACCESS_TOKEN"]
-    }
-    headers = {
-        "Content-Type": "application/json",
-        "setting_type": "domain_whitelisting",
-        "whitelisted_domains": ["http://thecatapi.com"],
-        "domain_action_type": "add"
-    }
-    data = json.dumps({
-        "recipient": {
-            "id": recipient_id
-        },
-        "message": {
-            "attachment": {
-                "type": "template",
-                "payload": {
-                    "template_type": "generic",
-                    "elements": [
-                        {
-                            "title": "Welcome to Peter'\''s Hats",
-                            "image_url": "http://thecatapi.com/api/images/get?format=src&type=jpg",
-                            "subtitle": "We'\''ve got the right hat for everyone.",
-                            "default_action": {
-                                "type": "web_url",
-                                "url": "http://thecatapi.com/api/images/get?format=src&type=jpg",
-                                "messenger_extensions": True,
-                                "webview_height_ratio": "tall",
-                                "fallback_url": "http://thecatapi.com/api/images/get?format=src&type=jpg"
-                            },
-                            "buttons": [
-                                {
-                                    "type": "postback",
-                                    "title": "Start Chatting",
-                                    "payload": "template"
-                                },
-                            ]
-                        }
-                    ]
-                }
-            }
-        }
-    })
 
     r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
     if r.status_code != 200:
