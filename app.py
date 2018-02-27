@@ -156,8 +156,6 @@ def send_general_template(recipient_id):
         log(r.text)
 
 def send_multi_template(recipient_id):
-    log("sending message to {recipient}: {text}".format(recipient=recipient_id, text=message_text))
-
     params = {
         "access_token": os.environ["PAGE_ACCESS_TOKEN"]
     }
