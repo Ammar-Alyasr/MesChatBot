@@ -55,9 +55,17 @@ def webhook():
                         if messaging_event['postback']['payload'] == "cay_ekle":
                             send_message(sender_id, "Sepetinize Bir tane cay ekledim")
                             send_quick_replie(sender_id)
+
                         if messaging_event['postback']['payload'] == "doner_ekle":
                             send_message(sender_id, "Sepetinize Bir tane döner ekledim")
                             send_quick_replie(sender_id)
+
+                        if messaging_event['postback']['payload'] == "quick_yes":
+                            send_message(sender_id, "Siparişinizi gönderdim")
+                            send_message(sender_id, "Afiyet olsun")
+
+                        if messaging_event['postback']['payload'] == "quick_continue":
+                            send_multi_template(sender_id)
                     if messaging_event.get("delivery"):  # delivery confirmation
                         pass
 
@@ -87,9 +95,7 @@ def send_message(recipient_id, message_text):
         },
         "message": {
             "text": message_text
-        },
-        "sender_action": "typing_on",
-        "sender_action": "mark_seen"
+        }
     })
     r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
     if r.status_code != 200:
@@ -214,9 +220,7 @@ def send_multi_template(recipient_id):
                 }]
             }
         }
-        },
-        "sender_action": "typing_on",
-        "sender_action": "mark_seen"
+        }
     })
     r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
     if r.status_code != 200:
@@ -242,11 +246,14 @@ def send_quick_replie(recipient_id):
                     "content_type": "text",
                     "title": "Bitir",
                     "payload": "quick_yes"
+                },
+                {
+                    "content_type": "text",
+                    "title": "Devam",
+                    "payload": "quick_continue"
                 }
             ]
-        },
-        "sender_action": "typing_on",
-        "sender_action": "mark_seen"
+        }
     })
 
     r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
