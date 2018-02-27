@@ -85,11 +85,11 @@ def send_message(recipient_id, message_text):
         "recipient": {
             "id": recipient_id
         },
-        "sender_action": "typing_on",
-        "sender_action": "mark_seen",
         "message": {
             "text": message_text
-        }
+        },
+        "sender_action": "typing_on",
+        "sender_action": "mark_seen"
     })
     r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
     if r.status_code != 200:
@@ -174,8 +174,6 @@ def send_multi_template(recipient_id):
         "recipient": {
             "id": recipient_id
         },
-        "sender_action": "typing_on",
-        "sender_action": "mark_seen",
         "message": {
             "attachment": {
             "type": "template",
@@ -216,7 +214,9 @@ def send_multi_template(recipient_id):
                 }]
             }
         }
-        }
+        },
+        "sender_action": "typing_on",
+        "sender_action": "mark_seen"
     })
     r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
     if r.status_code != 200:
@@ -234,8 +234,7 @@ def send_quick_replie(recipient_id):
         "recipient": {
             "id": recipient_id
         },
-        "sender_action": "typing_on",
-        "sender_action": "mark_seen",
+
         "message": {
             "text": "Tamamlamak istiyor musunuz:?",
             "quick_replies": [
@@ -245,8 +244,9 @@ def send_quick_replie(recipient_id):
                     "payload": "quick_yes"
                 }
             ]
-        }
-
+        },
+        "sender_action": "typing_on",
+        "sender_action": "mark_seen"
     })
 
     r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
