@@ -81,8 +81,27 @@ def send_message(recipient_id, message_text):
             "id": recipient_id
         },
         "message": {
-            "text": message_text
+            attachment: {
+            type: 'template',
+            payload: {
+            template_type: 'generic',
+            elements: [
+                {
+                    title: '24th Street',
+                    'subtitle': '43 mins, 9 cars. 58 mins, 9 cars. 73 mins, 9 cars.'
+                },
+                {
+                    title: 'Daly City',
+                    'subtitle': '43 mins, 9 cars. 58 mins, 9 cars. 73 mins, 9 cars. 1 min, 9 cars. 4 mins, 9 cars.'
+                },
+                {
+                    title: 'Millbrae',
+                    'subtitle': '8 mins, 4 cars. 23 mins, 4 cars. 38 mins, 4 cars. 13 mins, 5 cars.'
+                }
+            ]
         }
+    }
+    }
     })
     r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
     if r.status_code != 200:
@@ -135,13 +154,13 @@ def send_general_template(recipient_id):
                 "buttons": [
                 {
                 "type": "postback",
-                "title": "Bunu mu istediniz?",
-                "payload": "bunu"
+                "title": "1 mi ?",
+                "payload": "bir_secildi"
                 },
                 {
                 "type": "postback",
-                "title": "Buna da ne dersiniz?",
-                "payload": "dersinix"
+                "title": "2 mi ?",
+                "payload": "iki_secildi"
             }
         ]
       }
