@@ -174,7 +174,7 @@ def send_multi_template(recipient_id):
                 "elements": [{
                     "title": "Ai Chat Bot Communities",
                     "subtitle": "Communities to Follow",
-                    "image_url": "http://1u88jj3r4db2x4txp44yqfj1.wpengine.netdna-cdn.com/wp-content/uploads/2016/04/chatbot-930x659.jpg",
+                    "image_url": "https://gimmedelicious.com/wp-content/uploads/2018/02/Buffalo-Chicken-Wraps-2.jpg",
                     "buttons": [{
                         "type": "web_url",
                         "url": "https://www.facebook.com/groups/aichatbots/",
