@@ -41,6 +41,7 @@ def webhook():
                             send_message(sender_id,  message_text)
                             send_multi_template(sender_id)
 
+
                         elif 'attachments' in messaging_event['message']:
                             send_image(sender_id, "http://thecatapi.com/api/images/get?format=src&type=gif")
                             if sender_id == "1668676606538319":
@@ -49,14 +50,14 @@ def webhook():
                     if messaging_event.get("postback"):
                         if messaging_event['postback']['payload'] == "kahve_ekle":
                             send_message(sender_id,"Sepetinize Bir tane kahve ekledim")
-                            send_quick_replie(recipient_id)
+                            send_quick_replie(sender_id)
 
                         if messaging_event['postback']['payload'] == "cay_ekle":
                             send_message(sender_id, "Sepetinize Bir tane cay ekledim")
                             send_quick_replie(sender_id)
                         if messaging_event['postback']['payload'] == "doner_ekle":
                             send_message(sender_id, "Sepetinize Bir tane döner ekledim")
-                            send_quick_replie(recipient_id)
+                            send_quick_replie(sender_id)
                     if messaging_event.get("delivery"):  # delivery confirmation
                         pass
 
@@ -230,17 +231,12 @@ def send_quick_replie(recipient_id):
             "id": recipient_id
         },
         "message": {
-            "text": "Here is a quick reply!",
+            "text": "Tamamlamak istiyor musunuz:?",
             "quick_replies": [
                 {
                     "content_type": "text",
                     "title": "Bitir",
                     "payload": "quick_yes"
-                },
-                {
-                    "content_type": "text",
-                    "title": "Bşka bir şey al",
-                    "payload": "quick_continue"
                 }
             ]
         }
