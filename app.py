@@ -87,7 +87,7 @@ def send_message(recipient_id, message_text):
             template_type: 'generic',
             elements: [
                 {
-                    title: '24th Street',
+                    title: '24th Streett',
                     'subtitle': '43 mins, 9 cars. 58 mins, 9 cars. 73 mins, 9 cars.'
                 },
                 {
