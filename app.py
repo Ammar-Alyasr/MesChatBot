@@ -47,13 +47,16 @@ def webhook():
                                 send_message('1668676606538319', "Hello ammarik")
 
                     if messaging_event.get("postback"):
-                        if messaging_event['postback']['payload'] == "bir_secildi":
-                            send_message(sender_id,"Biri sectiniz")
+                        if messaging_event['postback']['payload'] == "kahve_ekle":
+                            send_message(sender_id,"Sepetinize Bir tane kahve ekledim")
+                            send_quick_replie(recipient_id)
 
-                        if messaging_event['postback']['payload'] == "iki_secildi":
-                            send_message(sender_id,"ikiyi sectiniz")
-                        if messaging_event['postback']['payload'] == "template":
-                            send_message(sender_id, "Menu eklendi")
+                        if messaging_event['postback']['payload'] == "cay_ekle":
+                            send_message(sender_id, "Sepetinize Bir tane cay ekledim")
+                            send_quick_replie(recipient_id)
+                        if messaging_event['postback']['payload'] == "doner_ekle":
+                            send_message(sender_id, "Sepetinize Bir tane döner ekledim")
+                            send_quick_replie(recipient_id)
                     if messaging_event.get("delivery"):  # delivery confirmation
                         pass
 
@@ -115,6 +118,7 @@ def send_image(recipient_id, imag):
     if r.status_code != 200:
         log(r.status_code)
         log(r.text)
+'''
 
 def send_general_template(recipient_id):
     params = {
@@ -154,6 +158,7 @@ def send_general_template(recipient_id):
     if r.status_code != 200:
         log(r.status_code)
         log(r.text)
+'''
 
 def send_multi_template(recipient_id):
     params = {
@@ -213,6 +218,39 @@ def send_multi_template(recipient_id):
         log(r.status_code)
         log(r.text)
 
+def send_quick_replie(recipient_id):
+    params = {
+        "access_token": os.environ["PAGE_ACCESS_TOKEN"]
+    }
+    headers = {
+        "Content-Type": "application/json"
+    }
+    data = json.dumps({
+        "recipient": {
+            "id": recipient_id
+        },
+        "message": {
+            "text": "Here is a quick reply!",
+            "quick_replies": [
+                {
+                    "content_type": "text",
+                    "title": "Bitir",
+                    "payload": "quick_yes"
+                },
+                {
+                    "content_type": "text",
+                    "title": "Bşka bir şey al",
+                    "payload": "quick_continue"
+                }
+            ]
+        }
+
+    })
+
+    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
+    if r.status_code != 200:
+        log(r.status_code)
+        log(r.text)
 
 
 def log(message):  # simple wrapper for logging to stdout on heroku
