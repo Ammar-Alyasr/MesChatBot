@@ -53,7 +53,7 @@ def webhook():
 
                         if messaging_event['postback']['payload'] == "cay_ekle":
                             send_message(sender_id, "Sepetinize Bir tane cay ekledim")
-                            send_quick_replie(recipient_id)
+                            send_quick_replie(sender_id)
                         if messaging_event['postback']['payload'] == "doner_ekle":
                             send_message(sender_id, "Sepetinize Bir tane döner ekledim")
                             send_quick_replie(recipient_id)
