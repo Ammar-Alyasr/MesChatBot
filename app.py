@@ -191,7 +191,7 @@ def send_multi_template(recipient_id):
                 }, {
                     "title": "Chatbots FAQ",
                     "subtitle": "Aking the Deep Questions",
-                    "image_url": "https://tctechcrunch2011.files.wordpress.com/2016/04/facebook-chatbots.png?w=738",
+                    "image_url": "http://haberkibris.com/images/2014_12_14/isyerinde-cay-molasi-faydali--2014-12-14_m.jpg",
                     "buttons": [{
                         "type": "postback",
                         "title": "What's the benefit?",
@@ -208,7 +208,7 @@ def send_multi_template(recipient_id):
                 },  {
                     "title": "Learning More",
                     "subtitle": "Aking the Deep Questions",
-                    "image_url": "http://www.brandknewmag.com/wp-content/uploads/2015/12/cortana.jpg",
+                    "image_url": "https://www.diyetkolik.com/site_media/media/nutrition_images/filtre-kahve-sekersiz.jpg",
                     "buttons": [{
                         "type": "postback",
                         "title": "AIML",
