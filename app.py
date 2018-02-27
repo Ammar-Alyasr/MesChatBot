@@ -85,6 +85,8 @@ def send_message(recipient_id, message_text):
         "recipient": {
             "id": recipient_id
         },
+        "sender_action": "typing_on",
+        "sender_action": "mark_seen",
         "message": {
             "text": message_text
         }
@@ -172,6 +174,8 @@ def send_multi_template(recipient_id):
         "recipient": {
             "id": recipient_id
         },
+        "sender_action": "typing_on",
+        "sender_action": "mark_seen",
         "message": {
             "attachment": {
             "type": "template",
@@ -230,6 +234,8 @@ def send_quick_replie(recipient_id):
         "recipient": {
             "id": recipient_id
         },
+        "sender_action": "typing_on",
+        "sender_action": "mark_seen",
         "message": {
             "text": "Tamamlamak istiyor musunuz:?",
             "quick_replies": [
