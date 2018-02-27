@@ -171,57 +171,38 @@ def send_multi_template(recipient_id):
             "type": "template",
             "payload": {
                 "template_type": "generic",
+                #start menu of template
                 "elements": [{
-                    "title": "Ai Chat Bot Communities",
-                    "subtitle": "Communities to Follow",
+
+                    #firest
+                    "title": "Tavuk Döner",
+                    "subtitle": "Soslu Turşulu Tavuk Döner",
                     "image_url": "https://gimmedelicious.com/wp-content/uploads/2018/02/Buffalo-Chicken-Wraps-2.jpg",
-                    "buttons": [{
-                        "type": "web_url",
-                        "url": "https://www.facebook.com/groups/aichatbots/",
-                        "title": "FB Chatbot Group"
-                    }, {
-                        "type": "web_url",
-                        "url": "https://www.reddit.com/r/Chat_Bots/",
-                        "title": "Chatbots on Reddit"
-                    },{
-                        "type": "web_url",
-                        "url": "https://twitter.com/aichatbots",
-                        "title": "Chatbots on Twitter"
-                    }],
+
+                    "buttons": [{#buttonus of menu
+                        "type": "postback",
+                        "title": "Sepete Ekle (3 Marka)",
+                        "payload": "doner_ekle"
+                    }, ],
                 }, {
-                    "title": "Chatbots FAQ",
-                    "subtitle": "Aking the Deep Questions",
+                    #second
+                    "title": "Çay",
                     "image_url": "http://haberkibris.com/images/2014_12_14/isyerinde-cay-molasi-faydali--2014-12-14_m.jpg",
-                    "buttons": [{
+
+                    "buttons": [{#buttonus of menu
                         "type": "postback",
-                        "title": "What's the benefit?",
-                        "payload": "Chatbots make content interactive instead of static",
-                    },{
-                        "type": "postback",
-                        "title": "What can Chatbots do",
-                        "payload": "One day Chatbots will control the Internet of Things! You will be able to control your homes temperature with a text",
-                    }, {
-                        "type": "postback",
-                        "title": "The Future",
-                        "payload": "Chatbots are fun! One day your BFF might be a Chatbot",
-                    }],
+                        "title": "Sepete Ekle (1 Marka)",
+                        "payload": "cay_ekle",
+                    },],
                 },  {
-                    "title": "Learning More",
-                    "subtitle": "Aking the Deep Questions",
-                    "image_url": "https://www.diyetkolik.com/site_media/media/nutrition_images/filtre-kahve-sekersiz.jpg",
-                    "buttons": [{
+                    #3d menu
+                    "title": "Kahve",
+                    "image_url": "https://foto.sondakika.com/haber/2017/12/05/dunya-turk-kahvesi-gunu-nde-kahveniz-kahve-10314099_6526_o.jpg",
+                    "buttons": [{#buttonus of menu
                         "type": "postback",
-                        "title": "AIML",
-                        "payload": "Checkout Artificial Intelligence Mark Up Language. Its easier than you think!",
-                    },{
-                        "type": "postback",
-                        "title": "Machine Learning",
-                        "payload": "Use python to teach your maching in 16D space in 15min",
-                    }, {
-                        "type": "postback",
-                        "title": "Communities",
-                        "payload": "Online communities & Meetups are the best way to stay ahead of the curve!",
-                    }],
+                        "title": "Sepete Ekle (3 Marka)",
+                        "payload": "kahve_ekle",
+                    },],
                 }]
             }
         }
