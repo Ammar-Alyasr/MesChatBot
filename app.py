@@ -66,6 +66,7 @@ def webhook():
 
                         if messaging_event['postback']['payload'] == "quick_continue":
                             send_multi_template(sender_id)
+                            send_message(sender_id, "Devam edebilirsiniz")
                     if messaging_event.get("delivery"):  # delivery confirmation
                         pass
 
