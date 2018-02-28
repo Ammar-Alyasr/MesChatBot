@@ -193,6 +193,9 @@ def send_multi_template(recipient_id):
                     "title": "Tavuk Döner",
                     "subtitle": "Soslu Turşulu Tavuk Döner",
                     "image_url": "https://gimmedelicious.com/wp-content/uploads/2018/02/Buffalo-Chicken-Wraps-2.jpg",
+                    "default_action": {
+                        "webview_height_ratio": "TALL"
+                    },
 
                     "buttons": [{#buttonus of menu
                         "type": "postback",
@@ -203,6 +206,9 @@ def send_multi_template(recipient_id):
                     #second
                     "title": "Çay",
                     "image_url": "http://haberkibris.com/images/2014_12_14/isyerinde-cay-molasi-faydali--2014-12-14_m.jpg",
+                    "default_action": {
+                        "webview_height_ratio": "TALL"
+                    },
 
                     "buttons": [{#buttonus of menu
                         "type": "postback",
@@ -213,6 +219,9 @@ def send_multi_template(recipient_id):
                     #3d menu
                     "title": "Kahve",
                     "image_url": "https://foto.sondakika.com/haber/2017/12/05/dunya-turk-kahvesi-gunu-nde-kahveniz-kahve-10314099_6526_o.jpg",
+                    "default_action": {
+                        "webview_height_ratio": "TALL"
+                    },
                     "buttons": [{#buttonus of menu
                         "type": "postback",
                         "title": "Sepete Ekle (3 Marka)",
