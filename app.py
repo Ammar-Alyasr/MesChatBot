@@ -250,12 +250,14 @@ def send_quick_replie(recipient_id):
                 {
                     "content_type": "text",
                     "title": "Bitir",
-                    "payload": "quick_yes"
+                    "payload": "quick_yes",
+                    "image_url":"http://www.dickson-constant.com/medias/images/catalogue/api/5477-logo-red-zoom.jpg"
                 },
                 {
                     "content_type": "text",
                     "title": "Devam",
-                    "payload": "quick_continue"
+                    "payload": "quick_continue",
+                    "image_url":"https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Solid_green.svg/2000px-Solid_green.svg.png"
                 }
             ]
         }
