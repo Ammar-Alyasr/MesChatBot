@@ -43,7 +43,7 @@ def webhook():
                                 send_message(sender_id, "Siparışınızı aldım")
                                 send_message(sender_id, "en kısa sürede elinizde olur")
                                 send_message(sender_id, "afiyet olsun 🧐")
-                            if (message_text == "Devam"):
+                            elif (message_text == "Devam"):
                                 send_multi_template(sender_id)
                             else:
                                 send_message(sender_id,  message_text)
