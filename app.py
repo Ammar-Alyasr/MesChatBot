@@ -38,15 +38,16 @@ def webhook():
                     if messaging_event.get('message'):  # someone sent us a message
                         if 'text' in messaging_event['message']:
                             message_text = messaging_event["message"]["text"]  # the message's text
-                            send_message(sender_id,  message_text)
-                            send_multi_template(sender_id)
 
                             if (message_text == "Bitir"):
-                                send_message(sender_id, "Aynisi geldi ")
-                            if (message_text == "Sepete Ekle (3 Marka)") :
-                                send_message(sender_id, "Postback gerisi msg olarak geliyor...")
-
-
+                                send_message(sender_id, "Siparışınızı aldım")
+                                send_message(sender_id, "en kısa sürede elinizde olur")
+                                send_message(sender_id, "afiyet olsun 🧐")
+                            if (message_text == "Devam"):
+                                send_multi_template(sender_id)
+                            else:
+                                send_message(sender_id,  message_text)
+                                send_multi_template(sender_id)
 
                         elif 'attachments' in messaging_event['message']:
                             send_image(sender_id, "http://thecatapi.com/api/images/get?format=src&type=gif")
@@ -66,13 +67,7 @@ def webhook():
                             send_message(sender_id, "Sepetinize Bir tane döner ekledim")
                             send_quick_replie(sender_id)
 
-                        if messaging_event['postback']['payload'] == "quick_yes":
-                            send_message(sender_id, "Siparişinizi gönderdim")
-                            send_message(sender_id, "Afiyet olsun")
 
-                        if messaging_event['postback']['payload'] == "quick_continue":
-                            send_multi_template(sender_id)
-                            send_message(sender_id, "Devam edebilirsiniz")
                     if messaging_event.get("delivery"):  # delivery confirmation
                         pass
 
