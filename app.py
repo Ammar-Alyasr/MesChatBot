@@ -41,6 +41,12 @@ def webhook():
                             send_message(sender_id,  message_text)
                             send_multi_template(sender_id)
 
+                            if(message_text == "Bitir"):
+                                send_message(sender_id, "Aynisi geldi ")
+                            if (message_text == "Sepete Ekle (3 Marka)"):
+                                send_message(sender_id, "Postback gerisi msg olarak geliyor...")
+
+
 
                         elif 'attachments' in messaging_event['message']:
                             send_image(sender_id, "http://thecatapi.com/api/images/get?format=src&type=gif")
