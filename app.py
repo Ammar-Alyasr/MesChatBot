@@ -41,9 +41,9 @@ def webhook():
                             send_message(sender_id,  message_text)
                             send_multi_template(sender_id)
 
-                            if(message_text == "Bitir"):
+                            if (message_text == "Bitir"):
                                 send_message(sender_id, "Aynisi geldi ")
-                            if (message_text == "Sepete Ekle (3 Marka)"):
+                            if (message_text == "Sepete Ekle (3 Marka)") :
                                 send_message(sender_id, "Postback gerisi msg olarak geliyor...")
 
 
@@ -72,6 +72,7 @@ def webhook():
 
                         if messaging_event['postback']['payload'] == "quick_continue":
                             send_multi_template(sender_id)
+                            send_message(sender_id, "Devam edebilirsiniz")
                     if messaging_event.get("delivery"):  # delivery confirmation
                         pass
 
@@ -116,14 +117,14 @@ def send_image(recipient_id, imag):
         "Content-Type": "application/json"
     }
     data = json.dumps({
-          "recipient":{
+          "recipient": {
             "id":recipient_id
           },
           "message":{
-            "attachment":{
+            "attachment": {
               "type":"image",
-              "payload":{
-                "url":imag,
+              "payload": {
+                "url": imag,
               }
             }
           }
@@ -199,7 +200,8 @@ def send_multi_template(recipient_id):
                     "subtitle": "Soslu Turşulu Tavuk Döner",
                     "image_url": "https://gimmedelicious.com/wp-content/uploads/2018/02/Buffalo-Chicken-Wraps-2.jpg",
 
-                    "buttons": [{#buttonus of menu
+                    #buttonus of menu
+                    "buttons": [{
                         "type": "postback",
                         "title": "Sepete Ekle (3 Marka)",
                         "payload": "doner_ekle"
@@ -208,8 +210,9 @@ def send_multi_template(recipient_id):
                     #second
                     "title": "Çay",
                     "image_url": "http://haberkibris.com/images/2014_12_14/isyerinde-cay-molasi-faydali--2014-12-14_m.jpg",
-
-                    "buttons": [{#buttonus of menu
+                   
+                    #buttonus of menu
+                    "buttons": [{
                         "type": "postback",
                         "title": "Sepete Ekle (1 Marka)",
                         "payload": "cay_ekle",
@@ -218,7 +221,9 @@ def send_multi_template(recipient_id):
                     #3d menu
                     "title": "Kahve",
                     "image_url": "https://foto.sondakika.com/haber/2017/12/05/dunya-turk-kahvesi-gunu-nde-kahveniz-kahve-10314099_6526_o.jpg",
-                    "buttons": [{#buttonus of menu
+           
+                    #buttonus of menu
+                    "buttons": [{
                         "type": "postback",
                         "title": "Sepete Ekle (3 Marka)",
                         "payload": "kahve_ekle",
@@ -251,12 +256,14 @@ def send_quick_replie(recipient_id):
                 {
                     "content_type": "text",
                     "title": "Bitir",
-                    "payload": "quick_yes"
+                    "payload": "quick_yes",
+                    "image_url":"http://www.dickson-constant.com/medias/images/catalogue/api/5477-logo-red-zoom.jpg"
                 },
                 {
                     "content_type": "text",
                     "title": "Devam",
-                    "payload": "quick_continue"
+                    "payload": "quick_continue",
+                    "image_url":"https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Solid_green.svg/2000px-Solid_green.svg.png"
                 }
             ]
         }
