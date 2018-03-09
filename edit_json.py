@@ -10,7 +10,8 @@ def edits():
     dosya.close()
 '''
 def weite_to_json(sender_id):
-    dosya = open('arabalar.json', 'a')
-    dosya.write('"' + sender_id + '" ' + '\n''')
-    dosya.close()
+    if os.path.exists("arabalar.json"):
+        dosya = open('arabalar.json', 'a')
+        dosya.write('"' + sender_id + '" ' + '\n''')
+        dosya.close()
 
