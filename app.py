@@ -40,8 +40,8 @@ def webhook():
                         if 'text' in messaging_event['message']:
                             message_text = messaging_event["message"]["text"]  # the message's text
 
-                            edit_json.weite_to_json(sender_id)
-                            if (edit_json.weite_to_json(sender_id)) :
+                            edit_json.write_to_json(sender_id)
+                            if (edit_json.write_to_json(sender_id)) :
                                 send_message(sender_id, "oraya yazildu.. tebrikler")
                             if (message_text == "Bitir"):
                                 send_message(sender_id, "Siparışınızı aldım")
