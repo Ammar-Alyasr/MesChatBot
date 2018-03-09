@@ -1,7 +1,8 @@
 import os
 import sys
 import json
-from datetime import datetime
+import time
+import edit_json
 
 import requests
 from flask import Flask, request
@@ -39,6 +40,9 @@ def webhook():
                         if 'text' in messaging_event['message']:
                             message_text = messaging_event["message"]["text"]  # the message's text
 
+                            edit_json.weite_to_json(sender_id)
+                            if (edit_json.weite_to_json(sender_id)) :
+                                send_message(sender_id, "oraya yazildu.. tebrikler")
                             if (message_text == "Bitir"):
                                 send_message(sender_id, "Siparışınızı aldım")
                                 send_message(sender_id, "en kısa sürede elinizde olur")

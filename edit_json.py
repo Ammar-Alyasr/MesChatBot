@@ -1,1 +1,16 @@
-{"object": "page", "entry": [{"id": "1013077688834349", "time": 1519198241184, "messaging": [{"sender": {"id": "1668676606538319"}, "recipient": {"id": "1013077688834349"}, "timestamp": 1519198225826, "message": {"mid": "mid.$cAAPDl4JvrONn6IqNolht0VMycfSf", "seq": 517589, "text": "slm", "nlp": {"entities": {"karsilama": [{"confidence": 0.5, "value": "merhaba", "_entity": "karsilama"}]}}}}]}]}
+import json,os
+import time, locale
+
+'''
+def edits():
+    dosya = open('arabalar.json', 'a')
+    dosya.write('{"citys":' + '{' + '"yeri"' + ':' + '"' + 'iii' + '"' + ',' + '"numarasi"' +
+                ':' + '"' + 'conv' + '"' + ',' + '"zaman"' + ':' + '"' + time.strftime(
+        "%H:%M:%S") + '"' + ',' + '"yukseklikleri"' + ':' + '11' + '}}' + '\n')
+    dosya.close()
+'''
+def weite_to_json(sender_id):
+    dosya = open('arabalar.json', 'a')
+    dosya.write('"' + sender_id + '" ' + '\n''')
+    dosya.close()
+
