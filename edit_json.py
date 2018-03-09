@@ -1,11 +1,12 @@
 import json,os
 import time, locale
 
-def edits():
+def read_from_json():
     dosya = open('arabalar.json')
     for doc in dosya:
         veriler = json.loads(doc)
-        print(veriler)
+
+        return veriler
     dosya.close()
 
 def write_to_json(sender_id):
