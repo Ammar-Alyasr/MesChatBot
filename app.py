@@ -58,7 +58,8 @@ def webhook():
                             if(write_to_json(sender_id)):
                                 send_message(sender_id, "Tebrikler buraya geldi")
 
-
+                            gelen_data = read_from_json()
+                            send_message(sender_id, gelen_data)
                             if (message_text == "Bitir"):
                                 send_message(sender_id, "Siparışınızı aldım")
                                 send_message(sender_id, "en kısa sürede elinizde olur")
