@@ -2,7 +2,6 @@ import os
 import sys
 import json
 import time
-import edit_json
 
 import requests
 from flask import Flask, request
@@ -21,26 +20,12 @@ def verify():
 
     return "Hello world", 200
 
-def write_to_json(sender_id):
-    if os.path.exists("arabalar.json"):
-        dosya = open('arabalar.json', 'a')
-        dosya.write('"' + str(sender_id) + '" ' + '\n''')
-        dosya.close()
-        return 1
 
-
-def read_from_json():
-    dosya = open('arabalar.json')
-    for doc in dosya:
-        veriler = json.loads(doc)
-
-        return veriler
-    dosya.close()
 
 @app.route('/', methods=['POST'])
 def webhook():
     # endpoint for processing incoming messaging events
-
+    get_start()
     data = request.get_json()
     log(data)  # you may not want to log every incoming message in production, but it's good for testing
     if data["object"] == "page":
@@ -55,11 +40,6 @@ def webhook():
                         if 'text' in messaging_event['message']:
                             message_text = messaging_event["message"]["text"]  # the message's text
 
-                            if(write_to_json(sender_id)):
-                                send_message(sender_id, "Tebrikler buraya geldi")
-
-                            gelen_data = read_from_json()
-                            send_message(sender_id, gelen_data)
                             if (message_text == "Bitir"):
                                 send_message(sender_id, "Siparışınızı aldım")
                                 send_message(sender_id, "en kısa sürede elinizde olur")
@@ -77,7 +57,7 @@ def webhook():
 
                     if messaging_event.get("postback"):
                         if messaging_event['postback']['payload'] == "kahve_ekle":
-                            send_message(sender_id,"Sepetinize Bir tane kahve ekledim")
+                            send_message(sender_id, "Sepetinize Bir tane kahve ekledim")
                             send_quick_replie(sender_id)
 
                         if messaging_event['postback']['payload'] == "cay_ekle":
@@ -101,6 +81,33 @@ def webhook():
 
     return "ok", 200
 
+
+
+def get_start():
+    params = {
+        "access_token": os.environ["PAGE_ACCESS_TOKEN"]
+    }
+    headers = {
+        "Content-Type": "application/json"
+    }
+    data = json.dumps({
+        "greeting": [
+            {
+                "locale": "default",
+                "text": "Merhabtin!"
+            }, {
+                "locale": "en_US",
+                "text": "Timeless apparel for the masses."
+            }
+        ],
+        "get_started": {
+            "payload": "get_start"
+        }
+    })
+    r = requests.post("https://graph.facebook.com/v2.6/me/messenger_profile", params=params, headers=headers, data=data)
+    if r.status_code != 200:
+        log(r.status_code)
+        log(r.text)
 
 def send_message(recipient_id, message_text):
 
