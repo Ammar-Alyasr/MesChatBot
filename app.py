@@ -120,7 +120,7 @@ def send_image(recipient_id, imag):
     }
     data = json.dumps({
           "recipient": {
-            "id":recipient_id
+            "id": recipient_id
           },
           "message":{
             "attachment": {
@@ -136,6 +136,8 @@ def send_image(recipient_id, imag):
     if r.status_code != 200:
         log(r.status_code)
         log(r.text)
+
+
 '''
 
 def send_general_template(recipient_id):
@@ -178,6 +180,7 @@ def send_general_template(recipient_id):
         log(r.text)
 '''
 
+
 def send_multi_template(recipient_id):
     params = {
         "access_token": os.environ["PAGE_ACCESS_TOKEN"]
@@ -194,42 +197,43 @@ def send_multi_template(recipient_id):
             "type": "template",
             "payload": {
                 "template_type": "generic",
-                #start menu of template
+                # start menu of template
                 "elements": [{
 
-                    #firest
+                    # firest
                     "title": "Tavuk Döner",
                     "subtitle": "Soslu Turşulu Tavuk Döner",
                     "image_url": "https://gimmedelicious.com/wp-content/uploads/2018/02/Buffalo-Chicken-Wraps-2.jpg",
 
-                    #buttonus of menu
+                    # buttonus of menu
                     "buttons": [{
                         "type": "postback",
                         "title": "Sepete Ekle (3 Marka)",
                         "payload": "doner_ekle"
                     }, ],
                 }, {
-                    #second
+                    # second
                     "title": "Çay",
                     "image_url": "http://haberkibris.com/images/2014_12_14/isyerinde-cay-molasi-faydali--2014-12-14_m.jpg",
                    
-                    #buttonus of menu
+                    # buttonus of menu
                     "buttons": [{
                         "type": "postback",
                         "title": "Sepete Ekle (1 Marka)",
                         "payload": "cay_ekle",
                     },],
                 },  {
-                    #3d menu
+                    # 3d menu
                     "title": "Kahve",
                     "image_url": "https://foto.sondakika.com/haber/2017/12/05/dunya-turk-kahvesi-gunu-nde-kahveniz-kahve-10314099_6526_o.jpg",
            
-                    #buttonus of menu
+                    # buttonus of menu
                     "buttons": [{
                         "type": "postback",
                         "title": "Sepete Ekle (3 Marka)",
                         "payload": "kahve_ekle",
-                    },],
+                    },
+                    ],
                 }]
             }
         }
@@ -239,6 +243,7 @@ def send_multi_template(recipient_id):
     if r.status_code != 200:
         log(r.status_code)
         log(r.text)
+
 
 def send_quick_replie(recipient_id):
     params = {
