@@ -27,6 +27,12 @@ def add_order_to_basket(sender_id, order, pieces):
         json.dump(jim, outfile)
 
 
+def read_basket(sender_id):
+    jim = json.load(open('data\\users_temporary_data\\%s.json' % sender_id))
+
+    return jim["basket"]
+
+
 '''
 if add_to_basket("TEST_FILE_SON1", "cay"):
     print("Eklendi")

@@ -2,7 +2,7 @@ import os
 import sys
 import json
 
-from Sources.basket_process import add_order_to_basket, check_file
+from Sources.basket_process import  check_file, read_basket
 import requests
 from flask import Flask, request
 
@@ -38,10 +38,10 @@ def webhook():
                         if 'text' in messaging_event['message']:
                             message_text = messaging_event["message"]["text"]  # the message's text
 
-                            if (message_text == "Bitir"):
-                                send_message(sender_id, "Siparışınızı aldım")
-                                send_message(sender_id, "en kısa sürede elinizde olur")
-                                send_message(sender_id, "afiyet olsun")
+                            if (message_text == "Sepetem"):
+                                send_message(sender_id, "Sepetenizdekiler")
+                                basket = read_basket(sender_id)
+                                send_message(sender_id, basket)
                             elif (message_text == "Devam"):
                                 send_multi_template(sender_id)
                             else:
@@ -255,7 +255,7 @@ def send_quick_replie(recipient_id):
             "quick_replies": [
                 {
                     "content_type": "text",
-                    "title": "Bitir",
+                    "title": "Sepetem",
                     "payload": "quick_yes",
                     "image_url":"http://www.dickson-constant.com/medias/images/catalogue/api/5477-logo-red-zoom.jpg"
                 },
