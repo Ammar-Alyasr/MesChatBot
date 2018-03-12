@@ -43,7 +43,7 @@ def webhook():
                                 send_message(sender_id, "Sepetenizdekiler")
                                 # read baskets items and send it to the user as list
                                 basket = read_basket(sender_id)
-                                send_message(sender_id, basket)
+                                send_message(sender_id, str(basket))
 
                             elif message_text == "Devam":
                                 send_multi_template(sender_id)
