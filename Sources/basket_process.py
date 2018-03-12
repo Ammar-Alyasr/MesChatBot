@@ -3,7 +3,7 @@ import os
 
 
 def check_file(sender_id, order, pieces):
-    # check if there is any file belong to the user_id
+    # check if there is any file belong to that user_id
     if os.path.isfile('data\\users_temporary_data\\%s.json' % sender_id):
         add_order_to_basket(sender_id, order, pieces)
         return 1

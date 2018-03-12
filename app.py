@@ -38,11 +38,14 @@ def webhook():
                         if 'text' in messaging_event['message']:
                             message_text = messaging_event["message"]["text"]  # the message's text
 
-                            if (message_text == "Sepetem"):
+                            if message_text == "Sepetem":
+                                # user wanna view the basket
                                 send_message(sender_id, "Sepetenizdekiler")
+                                # read baskets items and send it to the user as list
                                 basket = read_basket(sender_id)
                                 send_message(sender_id, basket)
-                            elif (message_text == "Devam"):
+
+                            elif message_text == "Devam":
                                 send_multi_template(sender_id)
                             else:
                                 send_message(sender_id,  message_text)
@@ -55,6 +58,7 @@ def webhook():
 
                     if messaging_event.get("postback"):
                         if messaging_event['postback']['payload'] == "kahve_ekle":
+                            # check_file: check if the user has own file, if not great it and add KAHVE
                             if check_file(sender_id, "kahve", 1):
                                 send_message(sender_id, "Sepetinize bir kahve ekledim")
                                 log("add new order into json data")
@@ -72,14 +76,12 @@ def webhook():
                                 log("add new order into json data")
                             send_quick_replie(sender_id)
 
-
                     if messaging_event.get("delivery"):  # delivery confirmation
                         pass
 
                     if messaging_event.get("optin"):  # optin confirmation
                         pass
 
-                    
                 except Exception:
                     send_message(sender_id, "sen ne attin ya!!!!")
 
