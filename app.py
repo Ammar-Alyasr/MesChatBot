@@ -1,8 +1,8 @@
 import os
 import sys
 import json
-import time
 
+from Sources.basket_process import add_order_to_basket, check_file
 import requests
 from flask import Flask, request
 
@@ -21,11 +21,9 @@ def verify():
     return "Hello world", 200
 
 
-
 @app.route('/', methods=['POST'])
 def webhook():
     # endpoint for processing incoming messaging events
-    get_start()
     data = request.get_json()
     log(data)  # you may not want to log every incoming message in production, but it's good for testing
     if data["object"] == "page":
@@ -43,7 +41,7 @@ def webhook():
                             if (message_text == "Bitir"):
                                 send_message(sender_id, "Siparışınızı aldım")
                                 send_message(sender_id, "en kısa sürede elinizde olur")
-                                send_message(sender_id, "afiyet olsun 🧐")
+                                send_message(sender_id, "afiyet olsun")
                             elif (message_text == "Devam"):
                                 send_multi_template(sender_id)
                             else:
@@ -57,15 +55,21 @@ def webhook():
 
                     if messaging_event.get("postback"):
                         if messaging_event['postback']['payload'] == "kahve_ekle":
-                            send_message(sender_id, "Sepetinize Bir tane kahve ekledim")
+                            if check_file(sender_id, "kahve", 1):
+                                send_message(sender_id, "Sepetinize bir kahve ekledim")
+                                log("add new order into json data")
                             send_quick_replie(sender_id)
 
                         if messaging_event['postback']['payload'] == "cay_ekle":
-                            send_message(sender_id, "Sepetinize Bir tane cay ekledim")
+                            if check_file(sender_id, "cay", 1):
+                                send_message(sender_id, "Sepetinize bir cay ekledim")
+                                log("add new order into json data")
                             send_quick_replie(sender_id)
 
                         if messaging_event['postback']['payload'] == "doner_ekle":
-                            send_message(sender_id, "Sepetinize Bir tane döner ekledim")
+                            if check_file(sender_id, "doner", 1):
+                                send_message(sender_id, "Sepetinize bir döner ekledim")
+                                log("add new order into json data")
                             send_quick_replie(sender_id)
 
 
@@ -81,33 +85,6 @@ def webhook():
 
     return "ok", 200
 
-
-
-def get_start():
-    params = {
-        "access_token": os.environ["PAGE_ACCESS_TOKEN"]
-    }
-    headers = {
-        "Content-Type": "application/json"
-    }
-    data = json.dumps({
-        "greeting": [
-            {
-                "locale": "default",
-                "text": "Merhabtin!"
-            }, {
-                "locale": "en_US",
-                "text": "Timeless apparel for the masses."
-            }
-        ],
-        "get_started": {
-            "payload": "get_start"
-        }
-    })
-    r = requests.post("https://graph.facebook.com/v2.6/me/messenger_profile", params=params, headers=headers, data=data)
-    if r.status_code != 200:
-        log(r.status_code)
-        log(r.text)
 
 def send_message(recipient_id, message_text):
 
