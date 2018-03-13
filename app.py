@@ -2,7 +2,7 @@ import os
 import sys
 import json
 
-from Sources.basket_process import  check_file, read_basket
+from Sources.basket_process import check_file, read_basket
 import requests
 from flask import Flask, request
 
@@ -39,7 +39,7 @@ def webhook():
                         if 'text' in messaging_event['message'] and 'quick_reply' not in messaging_event['message']:
                             message_text = messaging_event["message"]["text"]  # the message's text
 
-                            send_message(sender_id,  message_text)
+                            send_message(sender_id, message_text)
                             send_multi_template(sender_id)
 
                         elif 'quick_reply' in messaging_event['message']:  # someone sent us a quick_reply
@@ -92,7 +92,6 @@ def webhook():
 
 
 def send_message(recipient_id, message_text):
-
     log("sending message to {recipient}: {text}".format(recipient=recipient_id, text=message_text))
 
     params = {
@@ -114,6 +113,7 @@ def send_message(recipient_id, message_text):
         log(r.status_code)
         log(r.text)
 
+
 def send_image(recipient_id, imag):
     params = {
         "access_token": os.environ["PAGE_ACCESS_TOKEN"]
@@ -129,12 +129,10 @@ def send_image(recipient_id, imag):
             "attachment": {
               "type": "file",
               "payload": {
-                "is_reusable": True,
+                "url": '@/Sources/basket_process.py',
               }
             }
-          },
-        "filedata": '@/Sources/basket_process.py',
-        "type": 'file/py'
+          }
 
           })
     r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
@@ -199,49 +197,49 @@ def send_multi_template(recipient_id):
         },
         "message": {
             "attachment": {
-            "type": "template",
-            "payload": {
-                "template_type": "generic",
-                # start menu of template
-                "elements": [{
+                "type": "template",
+                "payload": {
+                    "template_type": "generic",
+                    # start menu of template
+                    "elements": [{
 
-                    # firest
-                    "title": "Tavuk Döner",
-                    "subtitle": "Soslu Turşulu Tavuk Döner",
-                    "image_url": "https://gimmedelicious.com/wp-content/uploads/2018/02/Buffalo-Chicken-Wraps-2.jpg",
+                        # firest
+                        "title": "Tavuk Döner",
+                        "subtitle": "Soslu Turşulu Tavuk Döner",
+                        "image_url": "https://gimmedelicious.com/wp-content/uploads/2018/02/Buffalo-Chicken-Wraps-2.jpg",
 
-                    # buttonus of menu
-                    "buttons": [{
-                        "type": "postback",
-                        "title": "Sepete Ekle (3 Marka)",
-                        "payload": "doner_ekle"
-                    }, ],
-                }, {
-                    # second
-                    "title": "Çay",
-                    "image_url": "http://haberkibris.com/images/2014_12_14/isyerinde-cay-molasi-faydali--2014-12-14_m.jpg",
-                   
-                    # buttonus of menu
-                    "buttons": [{
-                        "type": "postback",
-                        "title": "Sepete Ekle (1 Marka)",
-                        "payload": "cay_ekle",
-                    },],
-                },  {
-                    # 3d menu
-                    "title": "Kahve",
-                    "image_url": "https://foto.sondakika.com/haber/2017/12/05/dunya-turk-kahvesi-gunu-nde-kahveniz-kahve-10314099_6526_o.jpg",
-           
-                    # buttonus of menu
-                    "buttons": [{
-                        "type": "postback",
-                        "title": "Sepete Ekle (3 Marka)",
-                        "payload": "kahve_ekle",
-                    },
-                    ],
-                }]
+                        # buttonus of menu
+                        "buttons": [{
+                            "type": "postback",
+                            "title": "Sepete Ekle (3 Marka)",
+                            "payload": "doner_ekle"
+                        }, ],
+                    }, {
+                        # second
+                        "title": "Çay",
+                        "image_url": "http://haberkibris.com/images/2014_12_14/isyerinde-cay-molasi-faydali--2014-12-14_m.jpg",
+
+                        # buttonus of menu
+                        "buttons": [{
+                            "type": "postback",
+                            "title": "Sepete Ekle (1 Marka)",
+                            "payload": "cay_ekle",
+                        }, ],
+                    }, {
+                        # 3d menu
+                        "title": "Kahve",
+                        "image_url": "https://foto.sondakika.com/haber/2017/12/05/dunya-turk-kahvesi-gunu-nde-kahveniz-kahve-10314099_6526_o.jpg",
+
+                        # buttonus of menu
+                        "buttons": [{
+                            "type": "postback",
+                            "title": "Sepete Ekle (3 Marka)",
+                            "payload": "kahve_ekle",
+                        },
+                        ],
+                    }]
+                }
             }
-        }
         }
     })
     r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
@@ -269,13 +267,13 @@ def send_quick_replie(recipient_id):
                     "content_type": "text",
                     "title": "Sepetem",
                     "payload": "view_basket",
-                    "image_url":"http://www.dickson-constant.com/medias/images/catalogue/api/5477-logo-red-zoom.jpg"
+                    "image_url": "http://www.dickson-constant.com/medias/images/catalogue/api/5477-logo-red-zoom.jpg"
                 },
                 {
                     "content_type": "text",
                     "title": "Devam",
                     "payload": "continue",
-                    "image_url":"https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Solid_green.svg/2000px-Solid_green.svg.png"
+                    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Solid_green.svg/2000px-Solid_green.svg.png"
                 }
             ]
         }
