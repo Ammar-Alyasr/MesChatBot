@@ -2,7 +2,7 @@ import os
 import sys
 import json
 
-from Sources.basket_process import check_file, read_basket
+import Sources.basket_process as basket_process
 import requests
 from flask import Flask, request
 
@@ -48,7 +48,7 @@ def webhook():
                                 # user wanna view the basket
                                 send_message(sender_id, "Sepetenizdekiler")
 
-                                basket = read_basket(sender_id)  # read baskets items and send it to the user as list
+                                basket = basket_process.read_basket(sender_id)  # read baskets items and send it to the user as list
                                 send_message(sender_id, str(basket))
 
                             elif quick_reply == "continue":
@@ -62,19 +62,19 @@ def webhook():
                     if messaging_event.get("postback"):
                         if messaging_event['postback']['payload'] == "kahve_ekle":
                             # check_file: check if the user has own file, if not great it and add KAHVE
-                            if check_file(sender_id, "kahve", 1):
+                            if basket_process.check_file(sender_id, "kahve", 1):
                                 send_message(sender_id, "Sepetinize bir kahve ekledim")
                                 log("add new order into json data")
                             send_quick_replie(sender_id)
 
                         if messaging_event['postback']['payload'] == "cay_ekle":
-                            if check_file(sender_id, "cay", 1):
+                            if basket_process.check_file(sender_id, "cay", 1):
                                 send_message(sender_id, "Sepetinize bir cay ekledim")
                                 log("add new order into json data")
                             send_quick_replie(sender_id)
 
                         if messaging_event['postback']['payload'] == "doner_ekle":
-                            if check_file(sender_id, "doner", 1):
+                            if basket_process.check_file(sender_id, "doner", 1):
                                 send_message(sender_id, "Sepetinize bir döner ekledim")
                                 log("add new order into json data")
                             send_quick_replie(sender_id)
