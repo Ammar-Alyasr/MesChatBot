@@ -32,23 +32,26 @@ def webhook():
                 sender_id = messaging_event["sender"]["id"]  # the facebook ID of the person sending you the message
 
                 try:
-                    recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
+                    recipient_id = messaging_event["recipient"]["id"]
+                    # the recipient's ID, which should be your page's facebook ID
 
                     if messaging_event.get('message'):  # someone sent us a message
-                        if 'text' in messaging_event['message']:
+                        if 'text' in messaging_event['message'] and 'quick_reply' not in messaging_event['message']:
                             message_text = messaging_event["message"]["text"]  # the message's text
 
-                            if message_text == "Sepetem":
+                            send_message(sender_id,  message_text)
+                            send_multi_template(sender_id)
+
+                        elif 'quick_reply' in messaging_event['message']:  # someone sent us a quick_reply
+                            quick_reply = messaging_event["message"]["quick_reply"]["payload"]
+                            if quick_reply == "view_basket":
                                 # user wanna view the basket
                                 send_message(sender_id, "Sepetenizdekiler")
-                                # read baskets items and send it to the user as list
-                                basket = read_basket(sender_id)
+
+                                basket = read_basket(sender_id)  # read baskets items and send it to the user as list
                                 send_message(sender_id, str(basket))
 
-                            elif message_text == "Devam":
-                                send_multi_template(sender_id)
-                            else:
-                                send_message(sender_id,  message_text)
+                            elif quick_reply == "continue":
                                 send_multi_template(sender_id)
 
                         elif 'attachments' in messaging_event['message']:
@@ -263,13 +266,13 @@ def send_quick_replie(recipient_id):
                 {
                     "content_type": "text",
                     "title": "Sepetem",
-                    "payload": "quick_yes",
+                    "payload": "view_basket",
                     "image_url":"http://www.dickson-constant.com/medias/images/catalogue/api/5477-logo-red-zoom.jpg"
                 },
                 {
                     "content_type": "text",
                     "title": "Devam",
-                    "payload": "quick_continue",
+                    "payload": "continue",
                     "image_url":"https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Solid_green.svg/2000px-Solid_green.svg.png"
                 }
             ]
