@@ -127,9 +127,9 @@ def send_image(recipient_id, imag):
           },
           "message": {
             "attachment": {
-              "type": "file",
+              "type": "image",
               "payload": {
-                "url": '@/Sources/basket_process.py',
+                "url": imag,
               }
             }
           }
