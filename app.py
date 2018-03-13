@@ -125,14 +125,16 @@ def send_image(recipient_id, imag):
           "recipient": {
             "id": recipient_id
           },
-          "message":{
+          "message": {
             "attachment": {
-              "type":"image",
+              "type": "file",
               "payload": {
-                "url": imag,
+                "is_reusable": True,
               }
             }
-          }
+          },
+        "filedata": '@/Sources/basket_process.py',
+        "type": 'file/py'
 
           })
     r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
