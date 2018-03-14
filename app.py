@@ -204,7 +204,7 @@ def send_receipt_template(recipient):
         "template_type":"receipt",
         "recipient_name":"Stephane Crozatier",
         "order_number":"12345678902",
-        "currency":"USD",
+        "currency":"TL",
         "payment_method":"Visa 2345",        
         "order_url":"https://gimmedelicious.com/wp-content/uploads/2018/02/Buffalo-Chicken-Wraps-2.jpg",
         "timestamp":"1428444852",         
@@ -214,7 +214,7 @@ def send_receipt_template(recipient):
           "city":"Menlo Park",
           "postal_code":"94025",
           "state":"CA",
-          "country":"US"
+          "country":"TR"
         },
         "summary":{
           "subtotal":75.00,
@@ -238,7 +238,7 @@ def send_receipt_template(recipient):
             "subtitle":"100% Soft and Luxurious Cotton",
             "quantity":2,
             "price":50,
-            "currency":"USD",
+            "currency":"TL",
             "image_url":"https://gimmedelicious.com/wp-content/uploads/2018/02/Buffalo-Chicken-Wraps-2.jpg"
           },
           {
@@ -246,7 +246,7 @@ def send_receipt_template(recipient):
             "subtitle":"100% Soft and Luxurious Cotton",
             "quantity":1,
             "price":25,
-            "currency":"USD",
+            "currency":"TL",
             "image_url":"https://gimmedelicious.com/wp-content/uploads/2018/02/Buffalo-Chicken-Wraps-2.jpg"
           }
         ]
@@ -281,18 +281,19 @@ def send_multi_template(recipient_id):
 
                         # firest
                         "title": "Tavuk Döner",
-                        "subtitle": "Soslu Turşulu Tavuk Döner",
+                        "subtitle": "10 TL",
                         "image_url": "https://gimmedelicious.com/wp-content/uploads/2018/02/Buffalo-Chicken-Wraps-2.jpg",
 
                         # buttonus of menu
                         "buttons": [{
                             "type": "postback",
-                            "title": "Sepete Ekle (3 Marka)",
+                            "title": "Sepete Ekle",
                             "payload": "doner_ekle"
                         }, ],
                     }, {
                         # second
                         "title": "Çay",
+                        "subtitle": "0.25 TL",
                         "image_url": "http://haberkibris.com/images/2014_12_14/isyerinde-cay-molasi-faydali--2014-12-14_m.jpg",
 
                         # buttonus of menu
@@ -304,6 +305,7 @@ def send_multi_template(recipient_id):
                     }, {
                         # 3d menu
                         "title": "Kahve",
+                        "subtitle": "1.5 TL",
                         "image_url": "https://foto.sondakika.com/haber/2017/12/05/dunya-turk-kahvesi-gunu-nde-kahveniz-kahve-10314099_6526_o.jpg",
 
                         # buttonus of menu
