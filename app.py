@@ -39,8 +39,8 @@ def webhook():
                         if 'text' in messaging_event['message'] and 'quick_reply' not in messaging_event['message']:
                             message_text = messaging_event["message"]["text"]  # the message's text
 
-                            if sender_id != '1668676606538319':
-                                send_message('1668676606538319', "{0} from {1}".format(message_text, sender_id))
+                           # if sender_id != '1668676606538319':
+                                # send_message('1668676606538319', "{0} from {1}".format(message_text, sender_id))
                                 # here where to add new user into DB whatever will be
                                 # users_process.add_new
 
