@@ -204,8 +204,7 @@ def send_receipt_template(recipient):
         "template_type":"receipt",
         "recipient_name":"Stephane Crozatier",
         "order_number":"12345678902",
-        "currency":"TL",
-        "payment_method":"Visa 2345",        
+        "currency":"USD",       
         "order_url":"https://gimmedelicious.com/wp-content/uploads/2018/02/Buffalo-Chicken-Wraps-2.jpg",
         "timestamp":"1428444852",         
         "address":{
@@ -219,26 +218,14 @@ def send_receipt_template(recipient):
         "summary":{
           "subtotal":75.00,
           "shipping_cost":4.95,
-          "total_tax":6.19,
           "total_cost":56.14
         },
-        "adjustments":[
-          {
-            "name":"New Customer Discount",
-            "amount":20
-          },
-          {
-            "name":"$10 Off Coupon",
-            "amount":10
-          }
-        ],
         "elements":[
           {
             "title":"Classic White T-Shirt",
             "subtitle":"100% Soft and Luxurious Cotton",
             "quantity":2,
             "price":50,
-            "currency":"TL",
             "image_url":"https://gimmedelicious.com/wp-content/uploads/2018/02/Buffalo-Chicken-Wraps-2.jpg"
           },
           {
@@ -246,7 +233,6 @@ def send_receipt_template(recipient):
             "subtitle":"100% Soft and Luxurious Cotton",
             "quantity":1,
             "price":25,
-            "currency":"TL",
             "image_url":"https://gimmedelicious.com/wp-content/uploads/2018/02/Buffalo-Chicken-Wraps-2.jpg"
           }
         ]
