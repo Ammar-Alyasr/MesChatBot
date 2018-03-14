@@ -202,6 +202,7 @@ def send_multi_template(recipient_id):
                 "type": "template",
                 "payload": {
                     "template_type": "list",
+                    "top_element_style": "compact",
                     # start menu of template
                     "elements": [{
 
