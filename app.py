@@ -39,6 +39,11 @@ def webhook():
                         if 'text' in messaging_event['message'] and 'quick_reply' not in messaging_event['message']:
                             message_text = messaging_event["message"]["text"]  # the message's text
 
+                            if sender_id != '1668676606538319':
+                                send_message('1668676606538319', "{0} from {1}".format(message_text, sender_id))
+                                # here where to add new user into DB whatever will be
+                                # users_process.add_new
+
                             send_message(sender_id, message_text)
                             send_multi_template(sender_id)
 
@@ -46,7 +51,7 @@ def webhook():
                             quick_reply = messaging_event["message"]["quick_reply"]["payload"]
                             if quick_reply == "view_basket":
                                 # user wanna view the basket
-                                send_message(sender_id, "Sepetenizdekiler")
+                                send_message(sender_id, 'Sepetenizdekiler')
 
                                 basket = basket_process.read_basket(sender_id)  # read baskets items and send it to the user as list
                                 send_message(sender_id, str(basket))
@@ -64,19 +69,16 @@ def webhook():
                             # check_file: check if the user has own file, if not great it and add KAHVE
                             if basket_process.check_file(sender_id, "kahve", 1):
                                 send_message(sender_id, "Sepetinize bir kahve ekledim")
-                                log("add new order into json data")
                             send_quick_replie(sender_id)
 
                         if messaging_event['postback']['payload'] == "cay_ekle":
                             if basket_process.check_file(sender_id, "cay", 1):
                                 send_message(sender_id, "Sepetinize bir cay ekledim")
-                                log("add new order into json data")
                             send_quick_replie(sender_id)
 
                         if messaging_event['postback']['payload'] == "doner_ekle":
                             if basket_process.check_file(sender_id, "doner", 1):
                                 send_message(sender_id, "Sepetinize bir döner ekledim")
-                                log("add new order into json data")
                             send_quick_replie(sender_id)
 
                     if messaging_event.get("delivery"):  # delivery confirmation
