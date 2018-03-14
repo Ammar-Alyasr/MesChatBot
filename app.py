@@ -201,7 +201,7 @@ def send_multi_template(recipient_id):
             "attachment": {
                 "type": "template",
                 "payload": {
-                    "template_type": "generic",
+                    "template_type": "list",
                     # start menu of template
                     "elements": [{
 
