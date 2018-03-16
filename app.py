@@ -3,6 +3,8 @@ import sys
 import json
 
 import Sources.basket_process as basket_process
+from Sources.quick_replice.categorie_quick_replie import categorie_quick_replie
+import Sources.template.templates as template
 import requests
 from flask import Flask, request
 
@@ -39,25 +41,26 @@ def webhook():
                         if 'text' in messaging_event['message'] and 'quick_reply' not in messaging_event['message']:
                             message_text = messaging_event["message"]["text"]  # the message's text
 
+                            send_message(sender_id, "Yeniden Hosgeldiniz")
+                            categorie_quick_replie(sender_id)
+
                             if sender_id != '1668676606538319':
                                 send_message('1668676606538319', "{0} from {1}".format(message_text, sender_id))
                                 # here where to add new user into DB whatever will be
                                 # users_process.add_new
 
-                            send_message(sender_id, message_text)
-                            send_multi_template(sender_id)
-
-                        elif 'quick_reply' in messaging_event['message']:  # someone sent us a quick_reply
+                        elif 'quick_reply' in messaging_event['message']:
+                            # someone sent us a quick_reply
                             quick_reply = messaging_event["message"]["quick_reply"]["payload"]
-                            if quick_reply == "view_basket":
-                                # user wanna view the basket
-                                send_message(sender_id, 'Sepetenizdekiler')
 
-                                basket = basket_process.read_basket(sender_id)  # read baskets items and send it to the user as list
+                            if quick_reply == "categories":
+                                # user want to view the categories
+                                template.categories_template(sender_id)
+
+                            elif quick_reply == "view_basket":
+                                # read baskets items and send it to the user as list just for now
+                                basket = basket_process.read_basket(sender_id)
                                 send_message(sender_id, str(basket))
-
-                            elif quick_reply == "continue":
-                                send_multi_template(sender_id)
 
                         elif 'attachments' in messaging_event['message']:
                             send_image(sender_id, "http://thecatapi.com/api/images/get?format=src&type=gif")
@@ -80,6 +83,9 @@ def webhook():
                             if basket_process.check_file(sender_id, "doner", 1):
                                 send_message(sender_id, "Sepetinize bir döner ekledim")
                             send_quick_replie(sender_id)
+                        else:
+                            send_message("1668676606538319", "Ne zaman devam edeceksin ammarcim")
+
 
                     if messaging_event.get("delivery"):  # delivery confirmation
                         pass
