@@ -55,7 +55,7 @@ def webhook():
 
                             if quick_reply == "categories":
                                 # user want to view the categories
-                                template.categories_template(sender_id)
+                                categories_template(sender_id)
 
                             elif quick_reply == "view_basket":
                                 # read baskets items and send it to the user as list just for now
@@ -149,50 +149,7 @@ def send_image(recipient_id, imag):
         log(r.text)
 
 
-'''
-
-def send_general_template(recipient_id):
-    params = {
-        "access_token": os.environ["PAGE_ACCESS_TOKEN"]
-    }
-    headers = {
-        "Content-Type": "application/json",
-    }
-    data = json.dumps({
-          "recipient": {
-            "id": recipient_id
-          },
-          "message": {
-            "attachment": {
-              "type": "template",
-              "payload": {
-                "template_type": "button",
-                "text": "islemi seciniz ",
-                "buttons": [
-                {
-                "type": "postback",
-                "title": "1 mi ?",
-                "payload": "bir_secildi"
-                },
-                {
-                "type": "postback",
-                "title": "2 mi ?",
-                "payload": "iki_secildi"
-            }
-        ]
-      }
-    }
-  }
-})
-
-    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
-    if r.status_code != 200:
-        log(r.status_code)
-        log(r.text)
-'''
-
-
-def send_multi_template(recipient_id):
+def categories_template(recipient_id):
     params = {
         "access_token": os.environ["PAGE_ACCESS_TOKEN"]
     }
@@ -210,42 +167,72 @@ def send_multi_template(recipient_id):
                     "template_type": "generic",
                     # start menu of template
                     "elements": [{
-
-                        # firest
-                        "title": "Tavuk Döner",
-                        "subtitle": "Soslu Turşulu Tavuk Döner",
+                        # first
+                        "title": "Çay",
+                        "subtitle": ":şekerli/siz, açık normal, demli...",
                         "image_url": "https://gimmedelicious.com/wp-content/uploads/2018/02/Buffalo-Chicken-Wraps-2.jpg",
 
-                        # buttonus of menu
+                        # buttons of menu
                         "buttons": [{
                             "type": "postback",
-                            "title": "Sepete Ekle (3 Marka)",
-                            "payload": "doner_ekle"
+                            "title": "Ürünleri Getir",
+                            "payload": "tea_categorie"
                         }, ],
-                    }, {
+                    },
+                        {
                         # second
-                        "title": "Çay",
+                        "title": "Kahveler",
                         "image_url": "http://haberkibris.com/images/2014_12_14/isyerinde-cay-molasi-faydali--2014-12-14_m.jpg",
 
-                        # buttonus of menu
+                        # buttons of menu
                         "buttons": [{
                             "type": "postback",
-                            "title": "Sepete Ekle (1 Marka)",
-                            "payload": "cay_ekle",
-                        }, ],
-                    }, {
+                            "title": "Ürünleri Getir",
+                            "payload": "cofee_categorie",
+                        },
+                        ],
+                    },
+                        {
                         # 3d menu
-                        "title": "Kahve",
+                        "title": "Bitki Çay",
                         "image_url": "https://foto.sondakika.com/haber/2017/12/05/dunya-turk-kahvesi-gunu-nde-kahveniz-kahve-10314099_6526_o.jpg",
 
                         # buttonus of menu
                         "buttons": [{
                             "type": "postback",
-                            "title": "Sepete Ekle (3 Marka)",
-                            "payload": "kahve_ekle",
+                            "title": "Ürünleri Getir",
+                            "payload": "herbal_categorie",
                         },
                         ],
-                    }]
+                    },
+                        {
+                            # 4th menu
+                            "title": "Su",
+                            "image_url": "https://foto.sondakika.com/haber/2017/12/05/dunya-turk-kahvesi-gunu-nde-kahveniz-kahve-10314099_6526_o.jpg",
+
+                            # buttonus of menu
+                            "buttons": [{
+                                "type": "postback",
+                                "title": "Ürünleri Getir",
+                                "payload": "water_categorie",
+                            },
+                            ],
+                        },
+                        {
+                            # 5th menu
+                            "title": "Soda",
+                            "image_url": "https://foto.sondakika.com/haber/2017/12/05/dunya-turk-kahvesi-gunu-nde-kahveniz-kahve-10314099_6526_o.jpg",
+
+                            # buttonus of menu
+                            "buttons": [{
+                                "type": "postback",
+                                "title": "Ürünleri Getir",
+                                "payload": "soda_categorie",
+                            },
+                            ],
+                        },
+
+                    ]
                 }
             }
         }
@@ -254,6 +241,7 @@ def send_multi_template(recipient_id):
     if r.status_code != 200:
         log(r.status_code)
         log(r.text)
+
 
 
 def send_quick_replie(recipient_id):
