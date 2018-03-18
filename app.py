@@ -2,7 +2,7 @@ import os
 import sys
 import json
 
-import Sources.template.show_categorie_templates as menu
+
 import Sources.basket_process as basket_process
 import requests
 
@@ -50,7 +50,7 @@ def webhook():
 
                             if quick_reply == "categories":
                                 # user want to view the categories
-                                menu.categories_template(sender_id)
+                                categories_template(sender_id)
 
                             elif quick_reply == "view_basket":
                                 # read baskets items and send it to the user as list just for now
@@ -72,7 +72,7 @@ def webhook():
                         elif messaging_event['postback']['payload'] == "add_tea":
                             if basket_process.check_file(sender_id, "cay", 1):
                                 send_message(sender_id, "Sepetinize bir cay ekledim")
-                            menu.categorie_quick_replie(sender_id)
+                            categorie_quick_replie(sender_id)
 
                         elif messaging_event['postback']['payload'] == "doner_ekle":
                             if basket_process.check_file(sender_id, "doner", 1):
@@ -80,7 +80,7 @@ def webhook():
                             send_quick_replie(sender_id)
 
                         elif messaging_event['postback']['payload'] == "tea_categorie":
-                            menu.show_teas(sender_id)
+                            show_teas(sender_id)
                         else:
                             send_message("1668676606538319", "Ne zaman devam edeceksin ammarcim")
 
@@ -172,6 +172,219 @@ def send_quick_replie(recipient_id):
                     "title": "Devam",
                     "payload": "continue",
                     "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Solid_green.svg/2000px-Solid_green.svg.png"
+                }
+            ]
+        }
+    })
+
+    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
+    if r.status_code != 200:
+        log(r.status_code)
+        log(r.text)
+
+
+def categories_template(recipient_id):
+    params = {
+        "access_token": os.environ["PAGE_ACCESS_TOKEN"]
+    }
+    headers = {
+        "Content-Type": "application/json"
+    }
+    data = json.dumps({
+        "recipient": {
+            "id": recipient_id
+        },
+        "message": {
+            "attachment": {
+                "type": "template",
+                "payload": {
+                    "template_type": "generic",
+                    # start menu of template
+                    "elements": [{
+                        # first
+                        "title": "Çay",
+                        "subtitle": "şekerli/siz, açık normal, demli...",
+                        "image_url": "https://gimmedelicious.com/wp-content/uploads/2018/02/Buffalo-Chicken-Wraps-2.jpg",
+
+                        # buttons of menu
+                        "buttons": [{
+                            "type": "postback",
+                            "title": "Ürünleri Getir",
+                            "payload": "tea_categorie"
+                        }, ],
+                    },
+                        {
+                        # second
+                        "title": "Kahveler",
+                        "image_url": "http://haberkibris.com/images/2014_12_14/isyerinde-cay-molasi-faydali--2014-12-14_m.jpg",
+
+                        # buttons of menu
+                        "buttons": [{
+                            "type": "postback",
+                            "title": "Ürünleri Getir",
+                            "payload": "cofee_categorie",
+                        },
+                        ],
+                    },
+                        {
+                        # 3d menu
+                        "title": "Bitki Çay",
+                        "image_url": "https://foto.sondakika.com/haber/2017/12/05/dunya-turk-kahvesi-gunu-nde-kahveniz-kahve-10314099_6526_o.jpg",
+
+                        # buttonus of menu
+                        "buttons": [{
+                            "type": "postback",
+                            "title": "Ürünleri Getir",
+                            "payload": "herbal_categorie",
+                        },
+                        ],
+                    },
+                        {
+                            # 4th menu
+                            "title": "Su",
+                            "image_url": "https://foto.sondakika.com/haber/2017/12/05/dunya-turk-kahvesi-gunu-nde-kahveniz-kahve-10314099_6526_o.jpg",
+
+                            # buttonus of menu
+                            "buttons": [{
+                                "type": "postback",
+                                "title": "Ürünleri Getir",
+                                "payload": "water_categorie",
+                            },
+                            ],
+                        },
+                        {
+                            # 5th menu
+                            "title": "Soda",
+                            "image_url": "https://foto.sondakika.com/haber/2017/12/05/dunya-turk-kahvesi-gunu-nde-kahveniz-kahve-10314099_6526_o.jpg",
+
+                            # buttonus of menu
+                            "buttons": [{
+                                "type": "postback",
+                                "title": "Ürünleri Getir",
+                                "payload": "soda_categorie",
+                            },
+                            ],
+                        },
+
+                    ]
+                }
+            }
+        }
+    })
+    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
+    if r.status_code != 200:
+        log(r.status_code)
+        log(r.text)
+
+
+def show_teas(recipient_id):
+    params = {
+        "access_token": os.environ["PAGE_ACCESS_TOKEN"]
+    }
+    headers = {
+        "Content-Type": "application/json"
+    }
+    data = json.dumps({
+        "recipient": {
+            "id": recipient_id
+        },
+        "message": {
+            "attachment": {
+                "type": "template",
+                "payload": {
+                    "template_type": "list",
+                    # compact or large
+                    "top_element_style": "large",
+                    # start menu of template
+                    "elements": [{
+                        # first
+                        "title": "Çay",
+                        "subtitle": "Normal Çay",
+                        "image_url": "https://gimmedelicious.com/wp-content/uploads/2018/02/Buffalo-Chicken-Wraps-2.jpg",
+                        # buttons of menu
+                        "buttons": [{
+                            "type": "postback",
+                            "title": "Sepeteye Ekle",
+                            "payload": "add_tea"
+                        }, ],
+                    },
+                        {
+                        # second
+                        "title": "Demli Çay",
+                        "image_url": "https://i2.wp.com/www.kadinbakisi.com/wp-content/uploads/2017/08/demli-cayin-zararlari.jpg?resize=330%2C330",
+
+                        # buttons of menu
+                        "buttons": [{
+                            "type": "postback",
+                            "title": "Sepeteye Ekle",
+                            "payload": "add_demli_cay",
+                        },
+                        ],
+                    },
+                        {
+                        # 3d menu
+                        "title": "Limonlu Çay",
+                        "image_url": "https://foto.sondakika.com/haber/2017/12/05/dunya-turk-kahvesi-gunu-nde-kahveniz-kahve-10314099_6526_o.jpg",
+
+                        # buttonus of menu
+                        "buttons": [{
+                            "type": "postback",
+                            "title": "Sepeteye Ekle",
+                            "payload": "add_limonlu_cay",
+                        },
+                        ],
+                    },
+                        {
+                            # 4th menu
+                            "title": "Fincan Çay",
+                            "image_url": "https://foto.sondakika.com/haber/2017/12/05/dunya-turk-kahvesi-gunu-nde-kahveniz-kahve-10314099_6526_o.jpg",
+
+                            # buttonus of menu
+                            "buttons": [{
+                                "type": "postback",
+                                "title": "Sepeteye Ekle",
+                                "payload": "add_fincan",
+                            },
+                            ],
+                        },
+
+                    ]
+                }
+            }
+        }
+    })
+    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
+    if r.status_code != 200:
+        log(r.status_code)
+        log(r.text)
+
+
+def categorie_quick_replie(recipient_id):
+    params = {
+        "access_token": os.environ["PAGE_ACCESS_TOKEN"]
+    }
+    headers = {
+        "Content-Type": "application/json"
+    }
+    data = json.dumps({
+        "recipient": {
+            "id": recipient_id
+        },
+
+        "message": {
+            "text": "Kategorileri görmek ister misiniz ? ",
+            "quick_replies": [
+                {
+                    "content_type": "text",
+                    "title": "Kategoriler",
+                    "payload": "categories",
+                    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Solid_green.svg/2000px-Solid_green.svg.png"
+                },
+                {
+                    "content_type": "text",
+                    "title": "Sepetem",
+                    "payload": "view_basket",
+                    "image_url": "http://www.pvhc.net/img180/qzsenvtfibwdmkaipzij.png"
                 }
             ]
         }
