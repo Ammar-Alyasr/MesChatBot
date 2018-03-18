@@ -3,8 +3,6 @@ import sys
 import json
 
 import Sources.basket_process as basket_process
-from Sources.quick_replice.categorie_quick_replie import categorie_quick_replie
-import Sources.template.templates as template
 import requests
 from flask import Flask, request
 
