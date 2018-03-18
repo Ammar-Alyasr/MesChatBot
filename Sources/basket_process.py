@@ -28,9 +28,12 @@ def add_order_to_basket(sender_id, order, pieces):
 
 
 def read_basket(sender_id):
-    jim = json.load(open('data\\users_temporary_data\\%s.json' % sender_id))
+    if os.path.isfile('data\\users_temporary_data\\%s.json' % sender_id):
+        jim = json.load(open('data\\users_temporary_data\\%s.json' % sender_id))
 
-    return jim["basket"]
+        return jim["basket"]
+    else:
+        return "Sepetiniz boş."
 
 
 '''
