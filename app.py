@@ -42,7 +42,7 @@ def webhook():
                             message_text = messaging_event["message"]["text"]  # the message's text
 
                             send_message(sender_id, "Yeniden Hosgeldiniz")
-                            menu.categorie_quick_replie(sender_id)
+                            categorie_quick_replie(sender_id)
 
                         elif 'quick_reply' in messaging_event['message']:
                             # someone sent us a quick_reply
