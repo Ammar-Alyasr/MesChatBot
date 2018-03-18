@@ -43,11 +43,6 @@ def webhook():
                             send_message(sender_id, "Yeniden Hosgeldiniz")
                             categorie_quick_replie(sender_id)
 
-                            if sender_id != '1668676606538319':
-                                send_message('1668676606538319', "{0} from {1}".format(message_text, sender_id))
-                                # here where to add new user into DB whatever will be
-                                # users_process.add_new
-
                         elif 'quick_reply' in messaging_event['message']:
                             # someone sent us a quick_reply
                             quick_reply = messaging_event["message"]["quick_reply"]["payload"]
