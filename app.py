@@ -51,7 +51,6 @@ def webhook():
                             if quick_reply == "categories":
                                 # user want to view the categories
                                 categories_template(sender_id)
-
                             elif quick_reply == "view_basket":
                                 # read baskets items and send it to the user as list just for now
                                 basket = basket_process.read_basket(sender_id)
@@ -377,7 +376,7 @@ def categorie_quick_replie(recipient_id):
         },
 
         "message": {
-            "text": "Kategorileri görmek ister misiniz ? ",
+            "text": "Kategorileri görmek ister misiniz? ",
             "quick_replies": [
                 {
                     "content_type": "text",
