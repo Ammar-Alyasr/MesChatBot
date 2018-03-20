@@ -55,7 +55,11 @@ def webhook():
                             elif quick_reply == "view_basket":
                                 # read baskets items and send it to the user as list just for now
                                 basket = basket_process.read_basket(sender_id)
-                                send_message(sender_id, str(basket))
+
+                                if str(basket) == "Sepetiniz boş.":
+                                    categorie_quick_replie(sender_id)
+                                else:
+                                    send_message(sender_id, str(basket))
 
                         elif 'attachments' in messaging_event['message']:
                             send_image(sender_id, "http://thecatapi.com/api/images/get?format=src&type=gif")
