@@ -118,9 +118,6 @@ def send_message(recipient_id, message_text):
         }
     })
     r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
-    if r.status_code != 200:
-        log(r.status_code)
-        log(r.text)
 
 
 def send_image(recipient_id, imag):
