@@ -79,6 +79,7 @@ def webhook():
                             categorie_quick_replie(sender_id)
 
                         elif messaging_event['postback']['payload'] == "doner_ekle":
+
                             if basket_process.check_file(sender_id, "doner", 1):
                                 send_message(sender_id, "Sepetinize bir döner ekledim")
                             send_quick_replie(sender_id)
