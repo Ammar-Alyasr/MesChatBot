@@ -54,10 +54,10 @@ def webhook():
                             if quick_reply == "categories":
                                 # user want to view the categories
                                 templates.categories_template(sender_id)
+
                             elif quick_reply == "view_basket":
                                 # read baskets items and send it to the user as list just for now
                                 basket = basket_process.read_basket(sender_id)
-
                                 if str(basket) == "Sepetiniz boş.":
                                     send_message(sender_id, "Sepetinizde bir sey gözükmüyor")
                                     categorie_quick_replie(sender_id)
