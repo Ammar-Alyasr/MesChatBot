@@ -34,6 +34,15 @@ def add_order_to_basket(sender_id, order, pieces):
         json.dump(jim, outfile)
 
 
+def check_last_order(sender_id, number):
+    jim = json.load(open('data\\users_temporary_data\\%s.json' % sender_id))
+    for i in jim["basket"][0]:
+        if i["sira_nerede"] == "cay":
+            jim["basket"][0]["cay"] = number
+        with open('data\\users_temporary_data\\%s.json' % sender_id, 'w') as outfile:
+            json.dump(jim, outfile)
+
+
 def read_basket(sender_id):
     if os.path.isfile('data\\users_temporary_data\\%s.json' % sender_id):
         jim = json.load(open('data\\users_temporary_data\\%s.json' % sender_id))

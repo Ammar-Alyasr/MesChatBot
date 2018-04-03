@@ -3,6 +3,7 @@ import os
 import requests
 from flask import json
 
+numbers = ["1", "2", "3", "4", "5", "6", "7", "8"]
 
 def categorie_quick_replie(recipient_id):
     params = {

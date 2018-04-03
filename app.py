@@ -4,7 +4,7 @@ import json
 
 
 import Sources.basket_process as basket_process
-from Sources.quick_replice.categorie_quick_replie import categorie_quick_replie
+from Sources.quick_replice.categorie_quick_replie import *
 
 import Sources.template.show_categorie_templates as templates
 import requests
@@ -43,6 +43,8 @@ def webhook():
                     if messaging_event.get('message'):  # someone sent us a message
                         if 'text' in messaging_event['message'] and 'quick_reply' not in messaging_event['message']:
                             message_text = messaging_event["message"]["text"]  # the message's text
+                            if message_text in numbers:
+                                basket_process.check_last_order(sender_id, message_text)
 
                             send_message(sender_id, "Yeniden Hosgeldiniz")
                             categorie_quick_replie(sender_id)
@@ -74,6 +76,10 @@ def webhook():
                         if messaging_event['postback']['payload'] == "add_tea":
                             if basket_process.check_file(sender_id, "cay", 1):
                                 send_message(sender_id, "Sepetinize bir cay ekledim")
+                                send_message(sender_id, "fazla eklemek için istediğiniz NUMARAYI yazın.")
+                                send_message(sender_id, "veya")
+                                categorie_quick_replie(sender_id)
+
                             categorie_quick_replie(sender_id)
 
                         elif messaging_event['postback']['payload'] == "tea_categorie":
