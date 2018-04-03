@@ -38,7 +38,7 @@ def check_last_order(sender_id, number):
     jim = json.load(open('data\\users_temporary_data\\%s.json' % sender_id))
     for i in jim["basket"][0]:
         if i["sira_nerede"] == "cay":
-            jim["basket"][0]["cay"] = number
+            jim["basket"][0]["cay"] = str(number)
         with open('data\\users_temporary_data\\%s.json' % sender_id, 'w') as outfile:
             json.dump(jim, outfile)
 
