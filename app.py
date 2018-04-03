@@ -43,7 +43,7 @@ def webhook():
                     if messaging_event.get('message'):  # someone sent us a message
                         if 'text' in messaging_event['message'] and 'quick_reply' not in messaging_event['message']:
                             message_text = messaging_event["message"]["text"]  # the message's text
-                            if message_text in numbers:
+                            if message_text in range(1, 10):
                                 basket_process.check_last_order(sender_id, message_text)
 
                             send_message(sender_id, "Yeniden Hosgeldiniz")
@@ -93,8 +93,8 @@ def webhook():
                     if messaging_event.get("optin"):  # optin confirmation
                         pass
 
-                except Exception:
-                    send_message(sender_id, "sen ne attin ya!!!!")
+                except Exception as e:
+                    send_message(sender_id, "sen ne attin ya!!!!"+ str(e) )
 
     return "ok", 200
 
