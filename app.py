@@ -80,14 +80,12 @@ def webhook():
                                 send_message(sender_id, "veya")
                                 categorie_quick_replie(sender_id)
 
-                            elif messaging_event['postback']['payload'] == "add_demli_cay":
-                                if basket_process.check_file(sender_id, "demli çay", 1):
-                                    send_message(sender_id, "Sepetinize bir tene demli cay ekledim")
-                                    send_message(sender_id, "fazla eklemek için istediğiniz NUMARAYI yazın.")
-                                    send_message(sender_id, "ya da")
-                                    categorie_quick_replie(sender_id)
-
-                            categorie_quick_replie(sender_id)
+                        elif messaging_event['postback']['payload'] == "add_demli_cay":
+                            if basket_process.check_file(sender_id, "demli çay", 1):
+                                send_message(sender_id, "Sepetinize bir tene demli cay ekledim")
+                                send_message(sender_id, "fazla eklemek için istediğiniz NUMARAYI yazın.")
+                                send_message(sender_id, "ya da")
+                                categorie_quick_replie(sender_id)
 
                         elif messaging_event['postback']['payload'] == "tea_categorie":
                             templates.show_teas(sender_id)
@@ -101,7 +99,7 @@ def webhook():
                         pass
 
                 except Exception as e:
-                    send_message(sender_id, "sen ne attin ya!!!!"+ str(e) )
+                    send_message(sender_id, "sen ne attin ya!!!!" + str(e))
 
     return "ok", 200
 
