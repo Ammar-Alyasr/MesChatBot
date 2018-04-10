@@ -90,8 +90,8 @@ def show_basket(elements, recipient_id):
                 "type": "template",
                 "payload": {
                     "template_type": "list",
-                    "top_element_style": "LARGE",
-
+                    # compact or large
+                    "top_element_style": "compact",
                     # start menu of template
                     "elements": elements,
                 }
