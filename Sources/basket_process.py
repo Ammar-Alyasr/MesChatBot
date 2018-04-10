@@ -4,6 +4,8 @@ import os
 
 import requests
 
+demli_cay = "https://i2.wp.com/www.kadinbakisi.com/wp-content/uploads/2017/08/demli-cayin-zararlari.jpg?resize=330%2C330"
+cay = "http://www.ascihaber.com/v5/wp-content/uploads/2017/05/v5-1325764056_42_cay_-1.jpg"
 
 def check_file(sender_id, order, pieces):
     # check if there is any file belong to that user_id
@@ -54,11 +56,15 @@ def read_basket(sender_id):
         dict.pop("sira_nerede")
         asil = []
         for i in dict:
+            if i == "cay":
+                link = cay
+            else:
+                link = demli_cay
             kalip = {
                 # first
                 "title": "",
                 "subtitle": "" + " adet",
-                "image_url": "https://gimmedelicious.com/wp-content/uploads/2018/02/Buffalo-Chicken-Wraps-2.jpg",
+                "image_url": link,
                 # buttons of menu
                 "buttons": [{
                     "type": "postback",
