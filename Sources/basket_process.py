@@ -47,35 +47,51 @@ def read_basket(sender_id):
     if os.path.isfile('data\\users_temporary_data\\%s.json' % sender_id):
         jim = json.load(open('data\\users_temporary_data\\%s.json' % sender_id))
 
-        return jim["basket"]
+        dict = jim["basket"][0]
+        asil = []
+        for i in dict:
+            kalip = {
+                # first
+                "title": "",
+                "subtitle": "",
+                "image_url": "https://gimmedelicious.com/wp-content/uploads/2018/02/Buffalo-Chicken-Wraps-2.jpg",
+                # buttons of menu
+                "buttons": [{
+                    "type": "postback",
+                    "title": "Sepeteden Çıkar",
+                    "payload": "remove" + ""
+                }]}
+
+            kalip["title"] = i
+            kalip["subtitle"] = dict[i]
+            asil.append(kalip)
+        show_baskket(asil, sender_id)
+
     else:
         return "Sepetiniz boş."
 
 
+def show_baskket(elements, recipient_id):
+    params = {
+        "access_token": os.environ["PAGE_ACCESS_TOKEN"]
+    }
+    headers = {
+        "Content-Type": "application/json"
+    }
+    data = json.dumps({
+        "recipient": {
+            "id": recipient_id
+        },
+        "message": {
+            "attachment": {
+                "type": "template",
+                "payload": {
+                    "template_type": "generic",
+                    # start menu of template
+                    "elements": elements
+                }
+            }
+        }
+    })
+    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
 
-'''
-if add_to_basket("TEST_FILE_SON1", "cay"):
-    print("Eklendi")
-
-jim = json.load(open('TEST_FILE_SON1.json'))
-
-
-aram = jim["data"][0]["siparisler"]
-print(type(aram))
-aram.append("yemek")
-aram.append("blabla")
-print(aram)
-print(jim["data"][0])
-with open('TEST_FILE_SON1.json', 'w') as outfile:
-    json.dump(jim, outfile)
-    
-    
- 
-jim = json.load(open('TEST_FILE_SON1.json'))
-print(jim["basket"][0]["cay"])
-jim["basket"][0]["cay"] = "3"
-print(jim["basket"][0]["cay"])
-
-with open('TEST_FILE_SON1.json', 'w') as outfile:
-    json.dump(jim, outfile)
-'''
