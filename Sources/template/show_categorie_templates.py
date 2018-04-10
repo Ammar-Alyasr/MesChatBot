@@ -3,6 +3,14 @@ import os
 import requests
 from flask import json
 
+demli_cay = "https://i2.wp.com/www.kadinbakisi.com/wp-content/uploads/2017/08/demli-cayin-zararlari.jpg?resize=330%2C330"
+cay = "http://www.ascihaber.com/v5/wp-content/uploads/2017/05/v5-1325764056_42_cay_-1.jpg"
+kahve = "https://www.dogaldangelsin.com/image/cache/data/turk-kahvesi-800x800.jpg"
+limonlu_cay = "http://trthaberstatic.s3-website-eu-west-1.amazonaws.com/resimler/372000/372908.jpg"
+fincan_cay = "http://www.kazanabil.com/pasabahce-vela-12-parca-fincan-takimi-5258-11807-52-B.jpg"
+bitki_cay = "https://www.pirelikedi.com/wp-content/uploads/2017/11/karisik-bitki-cayi-adet-sancisi.jpg"
+su = "http://www.bik.gov.tr/wp-content/uploads/2017/05/su.jpg"
+soda = "https://cdnph.upi.com/svc/sv/upi_com/8041492971723/2017/1/ed977c35005a74ee81bf9b0dbd8b0c8a/Study-links-diet-soda-to-stroke-and-dementia-risks.jpg"
 
 def categories_template(recipient_id):
     params = {
@@ -25,7 +33,7 @@ def categories_template(recipient_id):
                         # first
                         "title": "Çay",
                         "subtitle": "şekerli/siz, açık normal, demli...",
-                        "image_url": "https://gimmedelicious.com/wp-content/uploads/2018/02/Buffalo-Chicken-Wraps-2.jpg",
+                        "image_url": cay,
 
                         # buttons of menu
                         "buttons": [{
@@ -37,7 +45,7 @@ def categories_template(recipient_id):
                         {
                         # second
                         "title": "Kahveler",
-                        "image_url": "http://haberkibris.com/images/2014_12_14/isyerinde-cay-molasi-faydali--2014-12-14_m.jpg",
+                        "image_url": kahve,
 
                         # buttons of menu
                         "buttons": [{
@@ -50,8 +58,7 @@ def categories_template(recipient_id):
                         {
                         # 3d menu
                         "title": "Bitki Çay",
-                        "image_url": "https://foto.sondakika.com/haber/2017/12/05/dunya-turk-kahvesi-gunu-nde-kahveniz-kahve-10314099_6526_o.jpg",
-
+                        "image_url": bitki_cay,
                         # buttonus of menu
                         "buttons": [{
                             "type": "postback",
@@ -63,8 +70,7 @@ def categories_template(recipient_id):
                         {
                             # 4th menu
                             "title": "Su",
-                            "image_url": "https://foto.sondakika.com/haber/2017/12/05/dunya-turk-kahvesi-gunu-nde-kahveniz-kahve-10314099_6526_o.jpg",
-
+                            "image_url": su,
                             # buttonus of menu
                             "buttons": [{
                                 "type": "postback",
@@ -76,8 +82,7 @@ def categories_template(recipient_id):
                         {
                             # 5th menu
                             "title": "Soda",
-                            "image_url": "https://foto.sondakika.com/haber/2017/12/05/dunya-turk-kahvesi-gunu-nde-kahveniz-kahve-10314099_6526_o.jpg",
-
+                            "image_url": soda,
                             # buttonus of menu
                             "buttons": [{
                                 "type": "postback",
@@ -118,7 +123,7 @@ def show_teas(recipient_id):
                         # first
                         "title": "Çay",
                         "subtitle": "Normal Çay",
-                        "image_url": "https://gimmedelicious.com/wp-content/uploads/2018/02/Buffalo-Chicken-Wraps-2.jpg",
+                        "image_url": cay,
                         # buttons of menu
                         "buttons": [{
                             "type": "postback",
@@ -129,7 +134,7 @@ def show_teas(recipient_id):
                         {
                         # second
                         "title": "Demli Çay",
-                        "image_url": "https://i2.wp.com/www.kadinbakisi.com/wp-content/uploads/2017/08/demli-cayin-zararlari.jpg?resize=330%2C330",
+                        "image_url": demli_cay,
 
                         # buttons of menu
                         "buttons": [{
@@ -142,7 +147,7 @@ def show_teas(recipient_id):
                         {
                         # 3d menu
                         "title": "Limonlu Çay",
-                        "image_url": "https://foto.sondakika.com/haber/2017/12/05/dunya-turk-kahvesi-gunu-nde-kahveniz-kahve-10314099_6526_o.jpg",
+                        "image_url": limonlu_cay,
 
                         # buttonus of menu
                         "buttons": [{
@@ -155,8 +160,7 @@ def show_teas(recipient_id):
                         {
                             # 4th menu
                             "title": "Fincan Çay",
-                            "image_url": "https://foto.sondakika.com/haber/2017/12/05/dunya-turk-kahvesi-gunu-nde-kahveniz-kahve-10314099_6526_o.jpg",
-
+                            "image_url": fincan_cay,
                             # buttonus of menu
                             "buttons": [{
                                 "type": "postback",

@@ -1,6 +1,7 @@
 import json
 import os
 
+
 import requests
 
 
@@ -56,7 +57,7 @@ def read_basket(sender_id):
             kalip = {
                 # first
                 "title": "",
-                "subtitle": "",
+                "subtitle": "" + " adet",
                 "image_url": "https://gimmedelicious.com/wp-content/uploads/2018/02/Buffalo-Chicken-Wraps-2.jpg",
                 # buttons of menu
                 "buttons": [{
