@@ -39,6 +39,8 @@ def check_last_order(sender_id, number):
     for i in jim["basket"]:
         if i["sira_nerede"] == "cay":
             jim["basket"][0]["cay"] = number
+        elif i["sira_nerede"] == "demli cay":
+            jim["basket"][0]["demli cay"] = number
         with open('data\\users_temporary_data\\%s.json' % sender_id, 'w') as outfile:
             json.dump(jim, outfile)
 
@@ -87,7 +89,9 @@ def show_basket(elements, recipient_id):
             "attachment": {
                 "type": "template",
                 "payload": {
-                    "template_type": "generic",
+                    "template_type": "list",
+                    "top_element_style": "LARGE",
+
                     # start menu of template
                     "elements": elements,
                 }
