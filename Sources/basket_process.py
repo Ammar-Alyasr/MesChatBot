@@ -73,7 +73,7 @@ def read_basket(sender_id):
                 }]}
 
             kalip["title"] = i
-            kalip["subtitle"] = dict[i]
+            kalip["subtitle"] = dict[i] + " adet"
             asil.append(kalip)
         show_basket(asil, sender_id)
 
