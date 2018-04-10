@@ -48,6 +48,7 @@ def read_basket(sender_id):
         jim = json.load(open('data\\users_temporary_data\\%s.json' % sender_id))
 
         dict = jim["basket"][0]
+        dict.pop("sira_nerede")
         asil = []
         for i in dict:
             kalip = {
@@ -65,13 +66,13 @@ def read_basket(sender_id):
             kalip["title"] = i
             kalip["subtitle"] = dict[i]
             asil.append(kalip)
-        show_baskket(asil, sender_id)
+        show_basket(asil, sender_id)
 
     else:
         return "Sepetiniz boş."
 
 
-def show_baskket(elements, recipient_id):
+def show_basket(elements, recipient_id):
     params = {
         "access_token": os.environ["PAGE_ACCESS_TOKEN"]
     }
@@ -88,7 +89,7 @@ def show_baskket(elements, recipient_id):
                 "payload": {
                     "template_type": "generic",
                     # start menu of template
-                    "elements": elements
+                    "elements": elements,
                 }
             }
         }
