@@ -89,9 +89,7 @@ def show_basket(elements, recipient_id):
             "attachment": {
                 "type": "template",
                 "payload": {
-                    "template_type": "list",
-                    # compact or large
-                    "top_element_style": "large",
+                    "template_type": "generic",
                     # start menu of template
                     "elements": elements,
                 }
