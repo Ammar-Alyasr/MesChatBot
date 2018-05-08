@@ -43,6 +43,12 @@ def webhook():
                     if messaging_event.get('message'):  # someone sent us a message
                         if 'text' in messaging_event['message'] and 'quick_reply' not in messaging_event['message']:
                             message_text = messaging_event["message"]["text"]  # the message's text
+
+                            products = []
+                            for i in messaging_event["message"]["nlp"]["entities"]:
+                                products.extend(i)
+
+                            send_message(sender_id, str(products))
                             if message_text in numbers:
                                 basket_process.check_last_order(sender_id, message_text)
 
