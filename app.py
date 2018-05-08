@@ -35,6 +35,13 @@ def webhook():
         for entry in data["entry"]:
             for messaging_event in entry["messaging"]:
                 sender_id = messaging_event["sender"]["id"]  # the facebook ID of the person sending you the message
+                entities = messaging_event["nlp"]
+                send_message(sender_id, str(entities))
+                # for i in entities:
+                # send_message(sender_id, str(i["confidence"]) )
+                # send_message(sender_id, type(i["confidence"]))
+                # if int(i["confidence"]) > 0.6:
+                # send_message(sender_id, str(i["_entity"]))
 
                 try:
                     recipient_id = messaging_event["recipient"]["id"]
@@ -44,13 +51,7 @@ def webhook():
                         if 'text' in messaging_event['message'] and 'quick_reply' not in messaging_event['message']:
                             message_text = messaging_event["message"]["text"]  # the message's text
 
-                            entities = messaging_event["nlp"]
-                            send_message(sender_id, str(entities))
-                            #for i in entities:
-                            #send_message(sender_id, str(i["confidence"]) )
-                                #send_message(sender_id, type(i["confidence"]))
-                                #if int(i["confidence"]) > 0.6:
-                                    #send_message(sender_id, str(i["_entity"]))
+
 
                             if message_text in numbers:
                                 basket_process.check_last_order(sender_id, message_text)
