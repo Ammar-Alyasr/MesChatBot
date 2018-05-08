@@ -45,10 +45,10 @@ def webhook():
                             message_text = messaging_event["message"]["text"]  # the message's text
 
                             entities = ["nlp"]["entities"]
-
-                            for i in entities:
-                                send_message(sender_id, str(i["confidence"]) )
-                                send_message(sender_id, type(i["confidence"]))
+                            send_message(sender_id, str(entities))
+                            #for i in entities:
+                            #send_message(sender_id, str(i["confidence"]) )
+                                #send_message(sender_id, type(i["confidence"]))
                                 #if int(i["confidence"]) > 0.6:
                                     #send_message(sender_id, str(i["_entity"]))
 
