@@ -47,8 +47,10 @@ def webhook():
                             entities = ["message"]["nlp"]["entities"]
 
                             for i in entities:
-                                if int(i["confidence"]) > 0.6:
-                                    send_message(sender_id, str(i["_entity"]))
+                                send_message(sender_id, str(i["confidence"]))
+                                send_message(sender_id, str(type(i["confidence"])))
+                                #if int(i["confidence"]) > 0.6:
+                                    #send_message(sender_id, str(i["_entity"]))
 
                             if message_text in numbers:
                                 basket_process.check_last_order(sender_id, message_text)
