@@ -36,7 +36,7 @@ def webhook():
             for messaging_event in entry["messaging"]:
                 sender_id = messaging_event["sender"]["id"]  # the facebook ID of the person sending you the message
 
-                entities = messaging_event["nlp"]["entities"]
+                entities = messaging_event["message"]["nlp"]["entities"]
                 #send_message(sender_id, str(entities))
                 # for i in entities:
                 # send_message(sender_id, str(i["confidence"]) )
