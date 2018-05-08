@@ -44,10 +44,10 @@ def webhook():
                         if 'text' in messaging_event['message'] and 'quick_reply' not in messaging_event['message']:
                             message_text = messaging_event["message"]["text"]  # the message's text
 
-                            entities = ["message"]["nlp"]["entities"]
+                            entities = ["nlp"]["entities"]
 
                             for i in entities:
-                                send_message(sender_id, i["confidence"])
+                                send_message(sender_id, str(i["confidence"]) )
                                 send_message(sender_id, type(i["confidence"]))
                                 #if int(i["confidence"]) > 0.6:
                                     #send_message(sender_id, str(i["_entity"]))
