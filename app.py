@@ -102,6 +102,18 @@ def webhook():
                                 send_message(sender_id, "fazla eklemek için istediğiniz NUMARAYI yazın.")
                                 send_message(sender_id, "ya da")
                                 categorie_quick_replie(sender_id)
+                        elif messaging_event['postback']['payload'] == "add_limonlu_cay":
+                            if basket_process.check_file(sender_id, "limonlu çay", 1):
+                                send_message(sender_id, "Sepetinize bir tene limonlu çay ekledim")
+                                send_message(sender_id, "fazla eklemek için istediğiniz NUMARAYI yazın.")
+                                send_message(sender_id, "ya da")
+                                categorie_quick_replie(sender_id)
+                        elif messaging_event['postback']['payload'] == "add_fincan_tea":
+                            if basket_process.check_file(sender_id, "limonlu çay", 1):
+                                send_message(sender_id, "Sepetinize bir tene limonlu çay ekledim")
+                                send_message(sender_id, "fazla eklemek için istediğiniz NUMARAYI yazın.")
+                                send_message(sender_id, "ya da")
+                                categorie_quick_replie(sender_id)
 
                         elif messaging_event['postback']['payload'] == "tea_categorie":
                             templates.show_teas(sender_id)

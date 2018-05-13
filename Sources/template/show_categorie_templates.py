@@ -172,7 +172,7 @@ def show_teas(recipient_id):
                             "buttons": [{
                                 "type": "postback",
                                 "title": "Sepeteye Ekle",
-                                "payload": "add_fincan",
+                                "payload": "add_fincan_tea",
                             },
                             ],
                         },
