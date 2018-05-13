@@ -48,6 +48,8 @@ def webhook():
                             templates.show_teas(sender_id)
                         elif intent == "kahve":
                             templates.show_coffee(sender_id)
+                        elif intent == "bitki":
+                            templates.show_bitki(sender_id)
 
                         if 'text' in messaging_event['message'] and 'quick_reply' not in messaging_event['message'] and intent == False:
 
@@ -101,6 +103,8 @@ def webhook():
                             templates.show_teas(sender_id)
                         elif messaging_event['postback']['payload'] == "coffee_categorie":
                             templates.show_coffee(sender_id)
+                        elif messaging_event['postback']['payload'] == "bitki_categorie":
+                            templates.show_bitki(sender_id)
                         else:
                             send_message("1668676606538319", "Ne zaman devam edeceksin ammarcim")
 
