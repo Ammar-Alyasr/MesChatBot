@@ -46,8 +46,6 @@ def webhook():
                         intent = nlp.wit_response(messaging_event["message"]["nlp"]["entities"])
                         if intent == "cay":
                             templates.show_teas(sender_id)
-                        elif intent == "kahve":
-                            templates.show_coffee(sender_id)
 
                         if 'text' in messaging_event['message'] and 'quick_reply' not in messaging_event['message'] and intent == False:
 
@@ -99,8 +97,6 @@ def webhook():
 
                         elif messaging_event['postback']['payload'] == "tea_categorie":
                             templates.show_teas(sender_id)
-                        elif messaging_event['postback']['payload'] == "coffee_categorie":
-                            templates.show_coffee(sender_id)
                         else:
                             send_message("1668676606538319", "Ne zaman devam edeceksin ammarcim")
 
