@@ -237,25 +237,13 @@ def show_coffee(recipient_id):
                     },
                         {
                             # 4th menu
-                            "title": "Nescafe Sade",
+                            "title": "Nescafe",
                             "image_url": nescafe,
                             # buttonus of menu
                             "buttons": [{
                                 "type": "postback",
                                 "title": "Sepeteye Ekle",
-                                "payload": "add_sade_nescafe",
-                            },
-                            ],
-                    },
-                        {
-                            # 4th menu
-                            "title": "Nescafe Sutlu",
-                            "image_url": nescafe,
-                            # buttonus of menu
-                            "buttons": [{
-                                "type": "postback",
-                                "title": "Sepeteye Ekle",
-                                "payload": "add_sutlu_nescafe",
+                                "payload": "add_nescafe",
                             },
                             ],
                     },
