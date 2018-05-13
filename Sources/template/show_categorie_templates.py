@@ -247,18 +247,6 @@ def show_coffee(recipient_id):
                             },
                             ],
                         },
-                        {
-                            # 4th menu
-                            "title": "Nescafe Sütlü",
-                            "image_url": nescafe,
-                            # buttonus of menu
-                            "buttons": [{
-                                "type": "postback",
-                                "title": "Sepeteye Ekle",
-                                "payload": "add_sutlu_nescafe",
-                            },
-                            ],
-                        },
 
                     ]
                 }
