@@ -212,7 +212,7 @@ def show_coffee(recipient_id):
                         "buttons": [{
                             "type": "postback",
                             "title": "Sepeteye Ekle",
-                            "payload": "add_sade_coffee"
+                            "payload": "add_sade_kahve"
                         }, ],
                     },
                         {
