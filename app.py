@@ -52,6 +52,8 @@ def webhook():
                             templates.show_bitki(sender_id)
                         elif intent == "su":
                             templates.show_su(sender_id)
+                        elif intent == "soda":
+                            templates.show_soda(sender_id)
 
                         if 'text' in messaging_event['message'] and 'quick_reply' not in messaging_event['message'] and intent == False:
 
@@ -109,6 +111,8 @@ def webhook():
                             templates.show_bitki(sender_id)
                         elif messaging_event['postback']['payload'] == "su_categorie":
                             templates.show_su(sender_id)
+                        elif messaging_event['postback']['payload'] == "soda_categorie":
+                            templates.show_soda(sender_id)
                         else:
                             send_message("1668676606538319", "Ne zaman devam edeceksin ammarcim")
 

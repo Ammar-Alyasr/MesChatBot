@@ -16,7 +16,9 @@ ada = "http://egebakkaliyesi.com/image/cache/catalog/yayla-ada-cayi-01-500x500.J
 kekik = "https://cdn.yemek.com/mncrop/940/625/uploads/2015/04/kekik-cayi-e1448290495871.jpg"
 ihlamur = "http://ihlamur.gen.tr/images/ihlamur-cayi-nasil-yapilir.jpg"
 soguk_su = "http://www.tevhidigundem.biz/d/news/37781.jpg"
-
+sade_soda = "http://www.happyspizza.com.tr/wp-content/uploads/2017/04/sade-soda.jpg"
+limonlu_soda = "http://www.maxikarizma.com/image/cache/data/urunler/05-icecekler/03-diger-icecekler/fresa/fresa-soda-limon-200-ml/" \
+               "fresa-soda-limon-200-ml-1000x1000.jpg"
 def categories_template(recipient_id):
     params = {
         "access_token": os.environ["PAGE_ACCESS_TOKEN"]
@@ -181,7 +183,6 @@ def show_teas(recipient_id):
         }
     })
     r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
-
 
 
 def show_coffee(recipient_id):
@@ -364,6 +365,57 @@ def show_su(recipient_id):
                             "type": "postback",
                             "title": "Sepeteye Ekle",
                             "payload": "add_su",
+                        },
+                        ],
+                    },
+                    ]
+                }
+            }
+        }
+    })
+    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
+
+
+def show_soda(recipient_id):
+    params = {
+        "access_token": os.environ["PAGE_ACCESS_TOKEN"]
+    }
+    headers = {
+        "Content-Type": "application/json"
+    }
+    data = json.dumps({
+        "recipient": {
+            "id": recipient_id
+        },
+        "message": {
+            "attachment": {
+                "type": "template",
+                "payload": {
+                    "template_type": "list",
+                    # compact or large
+                    "top_element_style": "compact",
+                    # start menu of template
+                    "elements": [{
+                        # first
+                        "title": "Sade Soda",
+                        "image_url": sade_soda,
+                        # buttons of menu
+                        "buttons": [{
+                            "type": "postback",
+                            "title": "Sepeteye Ekle",
+                            "payload": "add_sade_soda"
+                        }, ],
+                    },
+                        {
+                        # second
+                        "title": "Limonlu Soda",
+                        "image_url": limonlu_soda,
+
+                        # buttons of menu
+                        "buttons": [{
+                            "type": "postback",
+                            "title": "Sepeteye Ekle",
+                            "payload": "add_limonlu_soda",
                         },
                         ],
                     },
