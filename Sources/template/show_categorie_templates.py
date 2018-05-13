@@ -258,7 +258,7 @@ def show_coffee(recipient_id):
                                 "payload": "add_sutlu_nescafe",
                             },
                             ],
-                        }
+                        },
 
                     ]
                 }
