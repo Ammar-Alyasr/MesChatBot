@@ -117,7 +117,7 @@ def show_teas(recipient_id):
                 "payload": {
                     "template_type": "list",
                     # compact or large
-                    "top_element_style": "large",
+                    "top_element_style": "compact",
                     # start menu of template
                     "elements": [{
                         # first
