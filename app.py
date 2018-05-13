@@ -2,12 +2,12 @@ import os
 import sys
 import json
 
-
 import Sources.basket_process as basket_process
 from Sources.quick_replice.categorie_quick_replie import *
-
 import Sources.template.show_categorie_templates as templates
+import Sources.data.wit_response as nlp
 import requests
+
 
 from flask import Flask, request
 
@@ -36,16 +36,20 @@ def webhook():
             for messaging_event in entry["messaging"]:
                 sender_id = messaging_event["sender"]["id"]  # the facebook ID of the person sending you the message
 
-
                 try:
+
                     recipient_id = messaging_event["recipient"]["id"]
                     # the recipient's ID, which should be your page's facebook ID
 
+
                     if messaging_event.get('message'):  # someone sent us a message
-                        if 'text' in messaging_event['message'] and 'quick_reply' not in messaging_event['message']:
+                        intent = nlp.wit_response(messaging_event["message"]["nlp"]["entities"])
+                        if intent == "cay":
+                            templates.show_teas(sender_id)
+
+                        if 'text' in messaging_event['message'] and 'quick_reply' not in messaging_event['message'] and intent == False:
+
                             message_text = messaging_event["message"]["text"]  # the message's text
-
-
 
                             if message_text in numbers:
                                 basket_process.check_last_order(sender_id, message_text)
