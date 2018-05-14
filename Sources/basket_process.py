@@ -27,7 +27,7 @@ def add_order_to_basket(sender_id, order, pieces):
     if str(order) in jim["basket"][0]:
         jim["basket"][0][str(order)] += pieces
     else:
-        jim["basket"][0][str(order)] = str(pieces)
+        jim["basket"][0][str(order)] = pieces
 
     # burada, en son hangi urun secildi ile ilgili bayrak koyuoruz
     # cunku buna gore adetini soracam,
