@@ -71,6 +71,11 @@ def check_last_order(sender_id, number):
         elif i["sira_nerede"] == "su":
             order["su"] = number
 
+        elif i["sira_nerede"] == "sade soda":
+            order["sade soda"] = number
+        elif i["sira_nerede"] == "limonlu soda":
+            order["limonlu soda"] = number
+
         with open('data\\users_temporary_data\\%s.json' % sender_id, 'w') as outfile:
             json.dump(jim, outfile)
 
@@ -106,6 +111,10 @@ def read_basket(sender_id):
                 link = links.soguk_su
             elif i == "su":
                 link = links.su
+            elif i == "sade soda":
+                link = links.sade_soda
+            elif i == "limonlu soda":
+                link = links.limonlu_soda
 
             kalip = {
                 # first
