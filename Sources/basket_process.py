@@ -25,7 +25,7 @@ def add_order_to_basket(sender_id, order, pieces):
     jim = json.load(open('data\\users_temporary_data\\%s.json' % sender_id))
 
     if str(order) in jim["basket"][0]:
-        jim["basket"][0][str(order)] = jim["basket"][0][str(order)]+pieces
+        jim["basket"][0][str(order)] += pieces
     else:
         jim["basket"][0][str(order)] = str(pieces)
 
