@@ -97,19 +97,19 @@ def webhook():
                                 categorie_quick_replie(sender_id)
 
                         elif messaging_event['postback']['payload'] == "add_demli_cay":
-                            if basket_process.check_file(sender_id, "demli çay", 1):
+                            if basket_process.check_file(sender_id, "demli_cay", 1):
                                 send_message(sender_id, "Sepetinize bir tene demli cay ekledim")
                                 send_message(sender_id, "fazla eklemek için istediğiniz NUMARAYI yazın.")
                                 send_message(sender_id, "ya da")
                                 categorie_quick_replie(sender_id)
                         elif messaging_event['postback']['payload'] == "add_limonlu_cay":
-                            if basket_process.check_file(sender_id, "limonlu çay", 1):
+                            if basket_process.check_file(sender_id, "limonlu_cay", 1):
                                 send_message(sender_id, "Sepetinize bir tene limonlu çay ekledim")
                                 send_message(sender_id, "fazla eklemek için istediğiniz NUMARAYI yazın.")
                                 send_message(sender_id, "ya da")
                                 categorie_quick_replie(sender_id)
                         elif messaging_event['postback']['payload'] == "add_fincan_tea":
-                            if basket_process.check_file(sender_id, "limonlu çay", 1):
+                            if basket_process.check_file(sender_id, "fincan_cay", 1):
                                 send_message(sender_id, "Sepetinize bir tene limonlu çay ekledim")
                                 send_message(sender_id, "fazla eklemek için istediğiniz NUMARAYI yazın.")
                                 send_message(sender_id, "ya da")
@@ -117,19 +117,19 @@ def webhook():
 
 
                         elif messaging_event['postback']['payload'] == "add_sade_kahve":
-                            if basket_process.check_file(sender_id, "sade kahve", 1):
+                            if basket_process.check_file(sender_id, "sade_kahve", 1):
                                 send_message(sender_id, "Sepetinize bir tene sade kahve ekledim")
                                 send_message(sender_id, "fazla eklemek için istediğiniz NUMARAYI yazın.")
                                 send_message(sender_id, "ya da")
                                 categorie_quick_replie(sender_id)
                         elif messaging_event['postback']['payload'] == "add_orta_kahve":
-                            if basket_process.check_file(sender_id, "orta kahve", 1):
+                            if basket_process.check_file(sender_id, "orta_kahve", 1):
                                 send_message(sender_id, "Sepetinize bir tene orta kahve ekledim")
                                 send_message(sender_id, "fazla eklemek için istediğiniz NUMARAYI yazın.")
                                 send_message(sender_id, "ya da")
                                 categorie_quick_replie(sender_id)
                         elif messaging_event['postback']['payload'] == "add_sekerli_kahve":
-                            if basket_process.check_file(sender_id, "şekerli kahve", 1):
+                            if basket_process.check_file(sender_id, "sekerli_kahve", 1):
                                 send_message(sender_id, "Sepetinize bir tene şekerli kahve ekledim")
                                 send_message(sender_id, "fazla eklemek için istediğiniz NUMARAYI yazın.")
                                 send_message(sender_id, "ya da")
@@ -142,26 +142,26 @@ def webhook():
                                 categorie_quick_replie(sender_id)
 
                         elif messaging_event['postback']['payload'] == "add_ada_tea":
-                            if basket_process.check_file(sender_id, "ada çayı", 1):
+                            if basket_process.check_file(sender_id, "ada_cay", 1):
                                 send_message(sender_id, "Sepetinize bir tene ada çayı ekledim")
                                 send_message(sender_id, "fazla eklemek için istediğiniz NUMARAYI yazın.")
                                 send_message(sender_id, "ya da")
                                 categorie_quick_replie(sender_id)
                         elif messaging_event['postback']['payload'] == "add_kekik_tea":
-                            if basket_process.check_file(sender_id, "kekik çayı", 1):
+                            if basket_process.check_file(sender_id, "kekik_cay", 1):
                                 send_message(sender_id, "Sepetinize bir tene kekik çay ekledim")
                                 send_message(sender_id, "fazla eklemek için istediğiniz NUMARAYI yazın.")
                                 send_message(sender_id, "ya da")
                                 categorie_quick_replie(sender_id)
                         elif messaging_event['postback']['payload'] == "add_ihlamur_tea":
-                            if basket_process.check_file(sender_id, "ihlamur çayı", 1):
+                            if basket_process.check_file(sender_id, "ihlamur_cay", 1):
                                 send_message(sender_id, "Sepetinize bir tene ihlamur çay ekledim")
                                 send_message(sender_id, "fazla eklemek için istediğiniz NUMARAYI yazın.")
                                 send_message(sender_id, "ya da")
                                 categorie_quick_replie(sender_id)
 
                         elif messaging_event['postback']['payload'] == "add_soguk_su":
-                            if basket_process.check_file(sender_id, "soğuk su", 1):
+                            if basket_process.check_file(sender_id, "soguk_su", 1):
                                 send_message(sender_id, "Sepetinize bir tene soğuk su ekledim")
                                 send_message(sender_id, "fazla eklemek için istediğiniz NUMARAYI yazın.")
                                 send_message(sender_id, "ya da")

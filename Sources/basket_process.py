@@ -1,7 +1,7 @@
 import json
 import os
 
-
+import Sources.template.show_categorie_templates as links
 import requests
 
 demli_cay = "https://i2.wp.com/www.kadinbakisi.com/wp-content/uploads/2017/08/demli-cayin-zararlari.jpg?resize=330%2C330"
@@ -36,14 +36,13 @@ def add_order_to_basket(sender_id, order, pieces):
     with open('data\\users_temporary_data\\%s.json' % sender_id, 'w') as outfile:
         json.dump(jim, outfile)
 
-
 def check_last_order(sender_id, number):
     jim = json.load(open('data\\users_temporary_data\\%s.json' % sender_id))
     for i in jim["basket"]:
         if i["sira_nerede"] == "cay":
             jim["basket"][0]["cay"] = number
-        elif i["sira_nerede"] == "demli cay":
-            jim["basket"][0]["demli cay"] = number
+        elif i["sira_nerede"] == "demli_cay":
+            jim["basket"][0]["demli_cay"] = number
         with open('data\\users_temporary_data\\%s.json' % sender_id, 'w') as outfile:
             json.dump(jim, outfile)
 
