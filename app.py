@@ -61,7 +61,7 @@ def webhook():
 
                             message_text = messaging_event["message"]["text"]  # the message's text
 
-                            if message_text == "ammarik":
+                            if message_text == "dinaram":
                                 send_receipt(sender_id)
                             if message_text in numbers:
                                 basket_process.check_last_order(sender_id, message_text)
@@ -268,7 +268,7 @@ def send_receipt(sender_id):
                 "quantity":2,
                 "price":50,
                 "currency":"USD",
-                "image_url":"http://petersapparel.parseapp.com/img/whiteshirt.png"
+                "image_url":"http://www.ascihaber.com/v5/wp-content/uploads/2017/05/v5-1325764056_42_cay_-1.jpg"
               },
               {
                 "title":"Classic Gray T-Shirt",
@@ -276,7 +276,7 @@ def send_receipt(sender_id):
                 "quantity":1,
                 "price":25,
                 "currency":"USD",
-                "image_url":"http://petersapparel.parseapp.com/img/grayshirt.png"
+                "image_url":"http://www.ascihaber.com/v5/wp-content/uploads/2017/05/v5-1325764056_42_cay_-1.jpg"
               }
             ]
           }
