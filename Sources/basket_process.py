@@ -78,15 +78,35 @@ def check_last_order(sender_id, number):
 def read_basket(sender_id):
     if os.path.isfile('data\\users_temporary_data\\%s.json' % sender_id):
         jim = json.load(open('data\\users_temporary_data\\%s.json' % sender_id))
-
+        link = ""
         dict = jim["basket"][0]
         dict.pop("sira_nerede")
         asil = []
+
         for i in dict:
-            if i == "cay":
-                link = cay
-            else:
-                link = demli_cay
+            if i == "çay":
+                link = links.cay
+            elif i == "demli çay":
+                link = links.demli_cay
+            elif i == "limonlu çay":
+                link = links.limonlu_cay
+            elif i == "fincan çay":
+                link = links.fincan_cay
+            elif i == "sade kahve" or i == "orta kahve" or i == "şekerli kahve":
+                link = links.kahve
+            elif i == "nescafe":
+                link = links.nescafe
+            elif i == "ada çayı":
+                link = links.ada
+            elif i == "kekik çayı":
+                link = links.kekik
+            elif i == "ihlamur çayı":
+                link = links.ihlamur
+            elif i == "soğuk su":
+                link = links.soguk_su
+            elif i == "su":
+                link = links.su
+
             kalip = {
                 # first
                 "title": "",
