@@ -23,7 +23,11 @@ def check_file(sender_id, order, pieces):
 
 def add_order_to_basket(sender_id, order, pieces):
     jim = json.load(open('data\\users_temporary_data\\%s.json' % sender_id))
-    jim["basket"][0][str(order)] = str(pieces)
+
+    if str(order) in jim["basket"][0]:
+        jim["basket"][0][str(order)] = jim["basket"][0][str(order)]+pieces
+    else:
+        jim["basket"][0][str(order)] = str(pieces)
 
     # burada, en son hangi urun secildi ile ilgili bayrak koyuoruz
     # cunku buna gore adetini soracam,
