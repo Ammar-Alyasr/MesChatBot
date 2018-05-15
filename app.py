@@ -231,36 +231,24 @@ def send_receipt(sender_id):
           "type":"template",
           "payload":{
             "template_type":"receipt",
-            "recipient_name":"Stephane Crozatier",
+            "recipient_name":"Ammarik",
             "order_number":"12345678902",
-            "currency":"USD",
-            "payment_method":"Visa 2345",
-            "order_url":"http://petersapparel.parseapp.com/order?order_id=123456",
-            "timestamp":"1428444852",
+            "payment_method":"Pos Cihazı",
+            "order_url":"http://www.ascihaber.com/v5/wp-content/uploads/2017/05/v5-1325764056_42_cay_-1.jpg",
             "address":{
-              "street_1":"1 Hacker Way",
-              "street_2":"",
-              "city":"Menlo Park",
+              "street_1":"Kötekli Mh. Stkı Koçman Cd.",
+              "street_2":"Kyk Ekek Yurdu",
+              "city":"Menteşe",
               "postal_code":"94025",
               "state":"CA",
-              "country":"US"
+              "country":"TURKEY"
             },
             "summary":{
               "subtotal":75.00,
-              "shipping_cost":4.95,
-              "total_tax":6.19,
+              "shipping_cost":00,
+              "total_tax":1.3,
               "total_cost":56.14
             },
-            "adjustments":[
-              {
-                "name":"New Customer Discount",
-                "amount":20
-              },
-              {
-                "name":"$10 Off Coupon",
-                "amount":10
-              }
-            ],
             "elements":[
               {
                 "title":"Classic White T-Shirt",
@@ -275,7 +263,7 @@ def send_receipt(sender_id):
                 "subtitle":"100% Soft and Luxurious Cotton",
                 "quantity":1,
                 "price":25,
-                "currency":"USD",
+                "currency": "USD",
                 "image_url":"http://www.ascihaber.com/v5/wp-content/uploads/2017/05/v5-1325764056_42_cay_-1.jpg"
               }
             ]
