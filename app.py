@@ -90,6 +90,12 @@ def webhook():
                                 else:
                                     send_message(sender_id, str(basket))
                                     # BITIR question
+                                    finishe_quick_replie(sender_id)
+
+                            elif quick_reply == "finish_shopping":
+                                send_receipt(sender_id)
+                                send_message("siparinisiz tamamlandir", sender_id)
+
 
                         elif 'attachments' in messaging_event['message']:
                             send_image(sender_id, "http://thecatapi.com/api/images/get?format=src&type=gif")
