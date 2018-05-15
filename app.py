@@ -257,23 +257,23 @@ def send_receipt(sender_id):
               "country":"Turkey"
             },
             "summary":{
-              "subtotal":75.00,
+              "subtotal":1.00,
               "shipping_cost":00,
               "total_tax":1.3,
-              "total_cost":56.14
+              "total_cost":2.3
             },
             "elements":[
               {
                 "title":"Classic White T-Shirt",
                 "subtitle":"100% Soft and Luxurious Cotton",
-                "price":50,
+                "price":2,
                 "currency":"USD",
                 "image_url":"http://www.ascihaber.com/v5/wp-content/uploads/2017/05/v5-1325764056_42_cay_-1.jpg"
               },
               {
                 "title":"Classic Gray T-Shirt",
                 "subtitle":"100% Soft and Luxurious Cotton",
-                "price":25,
+                "price":2,
                 "currency": "USD",
                 "image_url":"http://www.ascihaber.com/v5/wp-content/uploads/2017/05/v5-1325764056_42_cay_-1.jpg"
               }
