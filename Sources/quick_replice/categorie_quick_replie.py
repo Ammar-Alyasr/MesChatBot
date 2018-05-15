@@ -52,6 +52,7 @@ def finishe_quick_replie(recipient_id):
         },
 
         "message": {
+            "text": "siparisinizi tamamlayin",
             "quick_replies": [
                 {
                     "content_type": "text",
