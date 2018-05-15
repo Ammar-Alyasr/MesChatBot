@@ -231,14 +231,16 @@ def send_receipt(sender_id):
           "type":"template",
           "payload":{
             "template_type":"receipt",
-            "recipient_name":"Ammarik",
+            "recipient_name":"Stephane Crozatier",
             "order_number":"12345678902",
-            "payment_method":"Pos Cihazı",
-            "order_url":"http://www.ascihaber.com/v5/wp-content/uploads/2017/05/v5-1325764056_42_cay_-1.jpg",
+            "currency":"USD",
+            "payment_method":"Marka ile",
+            "order_url":"http://petersapparel.parseapp.com/order?order_id=123456",
+            "timestamp":"1428444852",
             "address":{
-              "street_1":"Kötekli Mh. Stkı Koçman Cd.",
-              "street_2":"Kyk Ekek Yurdu",
-              "city":"Menteşe",
+              "street_1":"1 Hacker Way",
+              "street_2":"",
+              "city":"Menlo Park",
               "postal_code":"94025",
               "state":"CA",
               "country":"US"
