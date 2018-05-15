@@ -241,7 +241,7 @@ def send_receipt(sender_id):
               "city":"Menteşe",
               "postal_code":"94025",
               "state":"CA",
-              "country":"TURKEY"
+              "country":"US"
             },
             "summary":{
               "subtotal":75.00,
