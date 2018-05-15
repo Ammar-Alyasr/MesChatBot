@@ -93,8 +93,9 @@ def webhook():
                                     finishe_quick_replie(sender_id)
 
                             elif quick_reply == "finish_shopping":
-                                send_receipt(sender_id)
                                 send_message("siparinisiz tamamlandir", sender_id)
+                                send_receipt(sender_id)
+
 
 
                         elif 'attachments' in messaging_event['message']:
@@ -265,7 +266,6 @@ def send_receipt(sender_id):
               {
                 "title":"Classic White T-Shirt",
                 "subtitle":"100% Soft and Luxurious Cotton",
-                "quantity":2,
                 "price":50,
                 "currency":"USD",
                 "image_url":"http://www.ascihaber.com/v5/wp-content/uploads/2017/05/v5-1325764056_42_cay_-1.jpg"
@@ -273,7 +273,6 @@ def send_receipt(sender_id):
               {
                 "title":"Classic Gray T-Shirt",
                 "subtitle":"100% Soft and Luxurious Cotton",
-                "quantity":1,
                 "price":25,
                 "currency": "USD",
                 "image_url":"http://www.ascihaber.com/v5/wp-content/uploads/2017/05/v5-1325764056_42_cay_-1.jpg"
