@@ -88,7 +88,7 @@ def webhook():
                                     send_message(sender_id, "Sepetinizde bir sey gözükmüyor")
                                     categorie_quick_replie(sender_id)
                                 else:
-                                    send_message(sender_id, str(basket))
+                                    send_message(sender_id, basket)
                                     # BITIR question
                                     finishe_quick_replie(sender_id)
 
