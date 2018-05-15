@@ -45,29 +45,33 @@ def webhook():
 
 
                     if messaging_event.get('message'):  # someone sent us a message
-                        intent = nlp.wit_response(messaging_event["message"]["nlp"]["entities"])
-                        if intent == "cay":
-                            templates.show_teas(sender_id)
-                        elif intent == "kahve":
-                            templates.show_coffee(sender_id)
-                        elif intent == "bitki":
-                            templates.show_bitki(sender_id)
-                        elif intent == "su":
-                            templates.show_su(sender_id)
-                        elif intent == "soda":
-                            templates.show_soda(sender_id)
 
-                        if 'text' in messaging_event['message'] and 'quick_reply' not in messaging_event['message'] and intent == False:
 
-                            message_text = messaging_event["message"]["text"]  # the message's text
+                        if 'text' in messaging_event['message'] and 'quick_reply' not in messaging_event['message']:
 
-                            if message_text == "dinaram":
-                                send_receipt(sender_id)
-                            if message_text in numbers:
-                                basket_process.check_last_order(sender_id, message_text)
+                            intent = nlp.wit_response(messaging_event["message"]["nlp"]["entities"])
+                            if intent != False:
+                                if intent == "cay":
+                                    templates.show_teas(sender_id)
+                                elif intent == "kahve":
+                                    templates.show_coffee(sender_id)
+                                elif intent == "bitki":
+                                    templates.show_bitki(sender_id)
+                                elif intent == "su":
+                                    templates.show_su(sender_id)
+                                elif intent == "soda":
+                                    templates.show_soda(sender_id)
 
-                            send_message(sender_id, "Yeniden Hosgeldiniz")
-                            categorie_quick_replie(sender_id)
+                            else:
+                                message_text = messaging_event["message"]["text"]  # the message's text
+
+                                if message_text == "dinaram":
+                                    send_receipt(sender_id)
+                                if message_text in numbers:
+                                    basket_process.check_last_order(sender_id, message_text)
+
+                                send_message(sender_id, "Yeniden Hosgeldiniz")
+                                categorie_quick_replie(sender_id)
 
                         elif 'quick_reply' in messaging_event['message']:
                             # someone sent us a quick_reply
