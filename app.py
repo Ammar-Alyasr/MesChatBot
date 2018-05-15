@@ -243,7 +243,7 @@ def send_receipt(sender_id):
               "city":"Muğla",
               "postal_code":"94025",
               "state":"Menteşe",
-              "country":"US"
+              "country":"Turkey"
             },
             "summary":{
               "subtotal":75.00,
