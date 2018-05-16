@@ -94,7 +94,7 @@ def webhook():
 
                             elif quick_reply == "finish_shopping":
                                 send_message("siparinisiz tamamlandir", sender_id)
-                                send_receipt(sender_id)
+                                basket_process.send_receipt(sender_id)
 
 
 
@@ -224,65 +224,6 @@ def webhook():
                     send_message(sender_id, "sen ne attin ya!!!!" + str(e))
 
     return "ok", 200
-
-
-def send_receipt(sender_id):
-    params = {
-        "access_token": os.environ["PAGE_ACCESS_TOKEN"]
-    }
-    headers = {
-        "Content-Type": "application/json"
-    }
-    data = json.dumps({
-        "recipient":{
-        "id": sender_id
-      },
-      "message":{
-        "attachment":{
-          "type":"template",
-          "payload":{
-            "template_type":"receipt",
-            "recipient_name":"Ammarik",
-            "order_number":"12345678902",
-            "currency":"USD",
-            "payment_method":"POS Cihazı",
-            "order_url":"http://petersapparel.parseapp.com/order?order_id=123456",
-            "timestamp":"1428444852",
-            "address":{
-              "street_1":"Kötekli Mh. Kyk Yurdu",
-              "street_2":"5385294458",
-              "city":"Muğla",
-              "postal_code":"94025",
-              "state":"Menteşe",
-              "country":"Turkey"
-            },
-            "summary":{
-              "subtotal":1.00,
-              "shipping_cost":00,
-              "total_tax":1.3,
-              "total_cost":2.3
-            },
-            "elements":[
-              {
-                "title":"Classic White T-Shirt",
-                "subtitle":"100% Soft and Luxurious Cotton",
-                "price":2,
-                "currency":"USD",
-                "image_url":"http://www.ascihaber.com/v5/wp-content/uploads/2017/05/v5-1325764056_42_cay_-1.jpg"
-              },
-              {
-                "title":"Classic Gray T-Shirt",
-                "subtitle":"100% Soft and Luxurious Cotton",
-                "price":2,
-                "currency": "USD",
-                "image_url":"http://www.ascihaber.com/v5/wp-content/uploads/2017/05/v5-1325764056_42_cay_-1.jpg"
-              }
-            ]
-          }
-        }
-      }
-    })
-    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
 
 
 def send_message(recipient_id, message_text):

@@ -144,6 +144,103 @@ def read_basket(sender_id):
         return "Sepetiniz boş."
 
 
+def receipt_basket(sender_id):
+    if os.path.isfile('data\\users_temporary_data\\%s.json' % sender_id):
+        jim = json.load(open('data\\users_temporary_data\\%s.json' % sender_id))
+        link = ""
+        dict = jim["basket"][0]
+        dict.pop("sira_nerede")
+        asil = []
+
+        for i in dict:
+            if i == "çay":
+                link = links.cay
+            elif i == "demli çay":
+                link = links.demli_cay
+            elif i == "limonlu çay":
+                link = links.limonlu_cay
+            elif i == "fincan çay":
+                link = links.fincan_cay
+            elif i == "sade kahve" or i == "orta kahve" or i == "şekerli kahve":
+                link = links.kahve
+            elif i == "nescafe":
+                link = links.nescafe
+            elif i == "ada çayı":
+                link = links.ada
+            elif i == "kekik çayı":
+                link = links.kekik
+            elif i == "ihlamur çayı":
+                link = links.ihlamur
+            elif i == "soğuk su":
+                link = links.soguk_su
+            elif i == "su":
+                link = links.su
+            elif i == "sade soda":
+                link = links.sade_soda
+            elif i == "limonlu soda":
+                link = links.limonlu_soda
+
+            kalip = {
+                # first
+                "title" : "", #isim
+                "subtitle" : "", # adet
+                "price" : 2,
+                "currency" : "USD",
+                "image_url" : link
+                }
+
+            kalip["title"] = i
+            kalip["subtitle"] = str(dict[i]) + " adet"
+            asil.append(kalip)
+            return asil
+
+
+def send_receipt(sender_id):
+
+    elements = receipt_basket(sender_id)
+    params = {
+        "access_token": os.environ["PAGE_ACCESS_TOKEN"]
+    }
+    headers = {
+        "Content-Type": "application/json"
+    }
+    data = json.dumps({
+        "recipient":{
+        "id": sender_id
+      },
+      "message":{
+        "attachment":{
+          "type":"template",
+          "payload":{
+            "template_type":"receipt",
+            "recipient_name":"Ammarik",
+            "order_number":"12345678902",
+            "currency":"USD",
+            "payment_method":"POS Cihazı",
+            "order_url":"http://petersapparel.parseapp.com/order?order_id=123456",
+            "timestamp":"1428444852",
+            "address":{
+              "street_1":"Kötekli Mh. Kyk Yurdu",
+              "street_2":"5385294458",
+              "city":"Muğla",
+              "postal_code":"94025",
+              "state":"Menteşe",
+              "country":"Turkey"
+            },
+            "summary":{
+              "subtotal":1.00,
+              "shipping_cost":00,
+              "total_tax":1.3,
+              "total_cost":2.3
+            },
+            "elements": elements
+          }
+        }
+      }
+    })
+    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
+
+
 def show_basket(elements, recipient_id):
     params = {
         "access_token": os.environ["PAGE_ACCESS_TOKEN"]
