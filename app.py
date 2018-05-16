@@ -68,7 +68,10 @@ def webhook():
                                 if message_text == "dinaram":
                                     send_receipt(sender_id)
                                 if message_text in numbers:
-                                    basket_process.check_last_order(sender_id, message_text)
+                                    if basket_process.check_last_order(sender_id, message_text) == "":
+                                        basket_process.check_last_order(sender_id, message_text)
+                                    else:
+                                        send_message(sender_id, (message_text , "+ 5 = ", int(message_text)+5))
 
                                 send_message(sender_id, "Yeniden Hosgeldiniz")
                                 categorie_quick_replie(sender_id)

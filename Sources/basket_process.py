@@ -41,47 +41,50 @@ def add_order_to_basket(sender_id, order, pieces):
         json.dump(jim, outfile)
 
 def check_last_order(sender_id, number):
-    jim = json.load(open('data\\users_temporary_data\\%s.json' % sender_id))
-    order = jim["basket"][0]
+    try:
+        jim = json.load(open('data\\users_temporary_data\\%s.json' % sender_id))
+        order = jim["basket"][0]
 
-    for i in jim["basket"]:
-        if i["sira_nerede"] == "çay":
-            order["çay"] = number
-        elif i["sira_nerede"] == "demli çay":
-            order["demli_cay"] = number
-        elif i["sira_nerede"] == "limonlu çay":
-            order["limonlu çay"] = number
-        elif i["sira_nerede"] == "fincan çay":
-            order["fincan çay"] = number
+        for i in jim["basket"]:
+            if i["sira_nerede"] == "çay":
+                order["çay"] = number
+            elif i["sira_nerede"] == "demli çay":
+                order["demli_cay"] = number
+            elif i["sira_nerede"] == "limonlu çay":
+                order["limonlu çay"] = number
+            elif i["sira_nerede"] == "fincan çay":
+                order["fincan çay"] = number
 
-        elif i["sira_nerede"] == "sade kahve":
-            order["sade kahve"] = number
-        elif i["sira_nerede"] == "orta kahve":
-            order["orta kahve"] = number
-        elif i["sira_nerede"] == "şekerli kahve":
-            order["şekerli kahve"] = number
-        elif i["sira_nerede"] == "nescafe":
-            order["nescafe"] = number
+            elif i["sira_nerede"] == "sade kahve":
+                order["sade kahve"] = number
+            elif i["sira_nerede"] == "orta kahve":
+                order["orta kahve"] = number
+            elif i["sira_nerede"] == "şekerli kahve":
+                order["şekerli kahve"] = number
+            elif i["sira_nerede"] == "nescafe":
+                order["nescafe"] = number
 
-        elif i["sira_nerede"] == "ada çayı":
-            order["ada çayı"] = number
-        elif i["sira_nerede"] == "kekik çayı":
-            order["kekik çayı"] = number
-        elif i["sira_nerede"] == "ihlamur çayı":
-            order["ihlamur çayı"] = number
+            elif i["sira_nerede"] == "ada çayı":
+                order["ada çayı"] = number
+            elif i["sira_nerede"] == "kekik çayı":
+                order["kekik çayı"] = number
+            elif i["sira_nerede"] == "ihlamur çayı":
+                order["ihlamur çayı"] = number
 
-        elif i["sira_nerede"] == "soğuk su":
-            order["soğuk su"] = number
-        elif i["sira_nerede"] == "su":
-            order["su"] = number
+            elif i["sira_nerede"] == "soğuk su":
+                order["soğuk su"] = number
+            elif i["sira_nerede"] == "su":
+                order["su"] = number
 
-        elif i["sira_nerede"] == "sade soda":
-            order["sade soda"] = number
-        elif i["sira_nerede"] == "limonlu soda":
-            order["limonlu soda"] = number
+            elif i["sira_nerede"] == "sade soda":
+                order["sade soda"] = number
+            elif i["sira_nerede"] == "limonlu soda":
+                order["limonlu soda"] = number
 
-        with open('data\\users_temporary_data\\%s.json' % sender_id, 'w') as outfile:
-            json.dump(jim, outfile)
+            with open('data\\users_temporary_data\\%s.json' % sender_id, 'w') as outfile:
+                json.dump(jim, outfile)
+    except:
+        pass
 
 
 def read_basket(sender_id):
