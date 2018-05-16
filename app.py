@@ -65,8 +65,6 @@ def webhook():
                             else:
                                 message_text = messaging_event["message"]["text"]  # the message's text
 
-                                if message_text == "dinaram":
-                                    send_receipt(sender_id)
                                 if message_text in numbers:
                                     basket_process.check_last_order(sender_id, message_text)
 
@@ -93,7 +91,7 @@ def webhook():
                                     finishe_quick_replie(sender_id)
 
                             elif quick_reply == "finish_shopping":
-                                send_message("siparinisiz tamamlandir", sender_id)
+                                send_message("Siparisiniz tamamlanmistir", sender_id)
                                 basket_process.send_receipt(sender_id)
 
 
