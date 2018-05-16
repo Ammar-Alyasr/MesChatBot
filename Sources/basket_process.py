@@ -195,7 +195,7 @@ def receipt_basket(sender_id):
         return asil
 
 
-def send_receipt(sender_id):
+def send_receipt(sender_id, recipient_id):
 
     elements = receipt_basket(sender_id)
     params = {
@@ -206,7 +206,7 @@ def send_receipt(sender_id):
     }
     data = json.dumps({
         "recipient":{
-        "id": sender_id
+        "id": recipient_id
       },
       "message":{
         "attachment":{

@@ -92,7 +92,12 @@ def webhook():
 
                             elif quick_reply == "finish_shopping":
                                 send_message("Siparisiniz tamamlanmistir", sender_id)
-                                basket_process.send_receipt(sender_id)
+                                basket_process.send_receipt(sender_id, sender_id)
+                                send_message("1712866722109071", ("عندنا طلبية من", str(sender_id)))
+                                send_message("1712866722109071", "يلا يبرهيم جهزها")
+                                basket_process.send_receipt(sender_id, "1712866722109071")
+
+
 
 
 
