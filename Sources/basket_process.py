@@ -192,7 +192,7 @@ def receipt_basket(sender_id):
             kalip["title"] = i
             kalip["subtitle"] = str(dict[i]) + " adet"
             asil.append(kalip)
-            return asil
+        return asil
 
 
 def send_receipt(sender_id):
