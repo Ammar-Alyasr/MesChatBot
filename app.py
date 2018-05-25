@@ -42,10 +42,7 @@ def webhook():
 
                     recipient_id = messaging_event["recipient"]["id"]
                     # the recipient's ID, which should be your page's facebook ID
-
-
                     if messaging_event.get('message'):  # someone sent us a message
-
 
                         if 'text' in messaging_event['message'] and 'quick_reply' not in messaging_event['message']:
 
@@ -82,6 +79,7 @@ def webhook():
                             elif quick_reply == "view_basket":
                                 # read baskets items and send it to the user as list just for now
                                 basket = basket_process.read_basket(sender_id)
+
                                 if str(basket) == "Sepetiniz boş.":
                                     send_message(sender_id, "Sepetinizde bir sey gözükmüyor")
                                     categorie_quick_replie(sender_id)
@@ -91,15 +89,9 @@ def webhook():
                                     finishe_quick_replie(sender_id)
 
                             elif quick_reply == "finish_shopping":
-                                send_message("Siparisiniz tamamlanmistir", sender_id)
                                 basket_process.send_receipt(sender_id, sender_id)
-                                send_message("1712866722109071", ("عندنا طلبية من", str(sender_id)))
-                                send_message("1712866722109071", "يلا يبرهيم جهزها")
-                                basket_process.send_receipt(sender_id, "1712866722109071")
-
-
-
-
+                                send_message("1650134715044426", "Yeni Siparis var")
+                                basket_process.send_receipt(sender_id, "1650134715044426")
 
                         elif 'attachments' in messaging_event['message']:
                             send_image(sender_id, "http://thecatapi.com/api/images/get?format=src&type=gif")
@@ -132,7 +124,6 @@ def webhook():
                                 send_message(sender_id, "istediğiniz sipariş adetini girebilirsiniz")
                                 send_message(sender_id, "ya da")
                                 categorie_quick_replie(sender_id)
-
 
                         elif messaging_event['postback']['payload'] == "add_sade_kahve":
                             if basket_process.check_file(sender_id, "sade kahve", 1):
